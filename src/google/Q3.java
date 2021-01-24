@@ -14,6 +14,7 @@ public class Q3 {
         System.out.println(q.lengthOfLongestSubstring("pwwkew")); // 3
     }
 
+    // O(n) O(min(m,n))
     public int lengthOfLongestSubstring(String s) {
         if(s == null || s.length() == 0) {
             return 0;
@@ -21,7 +22,7 @@ public class Q3 {
         int n = s.length();
         Set<Character> set = new HashSet<>();
         int i = 0, j = 0, max = 0;
-        while(i < n && j < n) {
+        while(i < n && j < n) { // i < n is not necessary, it can't exceed j.
             if(!set.contains(s.charAt(j))) {
                 set.add(s.charAt(j++));
                 max = Math.max(max, j - i);
@@ -31,7 +32,7 @@ public class Q3 {
         }
         return max;
     }
-
+    // O(n) O(min(m,n))
     public int lengthOfLongestSubstring1(String s) {
         Map<Character, Integer> map = new HashMap<>();
         int max = 0, i = 0, j = 0, n = s.length();
@@ -45,7 +46,7 @@ public class Q3 {
         }
         return max;
     }
-
+    // O(n) O(m) m - length of array -> O(1)
     public int lengthOfLongestSubstring2(String s) {
         int[] map = new int[128];
         int max = 0, i = 0, j = 0, n = s.length();
