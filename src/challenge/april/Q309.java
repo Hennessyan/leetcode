@@ -39,4 +39,19 @@ public class Q309 {
         }
         return Math.max(s0[prices.length - 1], s2[prices.length - 1]);    //s1的肯定比s0的小
     }
+
+    public int maxProfit3(int[] prices) {
+
+        int sold = Integer.MIN_VALUE, held = Integer.MIN_VALUE, reset = 0;
+
+        for (int price : prices) {
+            int preSold = sold;
+
+            sold = held + price;
+            held = Math.max(held, reset - price);
+            reset = Math.max(reset, preSold);
+        }
+
+        return Math.max(sold, reset);
+    }
 }

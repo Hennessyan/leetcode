@@ -24,7 +24,7 @@ public class Q210 {
         visited = new int[numCourses];
         for(int[] p : pres) {
             // Can use list for courses, then no need to reverse order.
-            graph.computeIfAbsent(p[0], x -> new ArrayList<>()).add(p[1]);
+            graph.computeIfAbsent(p[0], x -> new ArrayList<>()).add(p[1]);  //注意是P[0], P[1]
         }
 
         for(int i = 0; i < numCourses; i++) {
@@ -56,7 +56,7 @@ public class Q210 {
             }
         }
         visited[u] = 2;
-        courses.add(u);
+        courses.add(u); // LIST 而不是STACK因为先加入的是先修课 之前一定没有更"先"的了.
         return true;
     }
 
@@ -68,11 +68,11 @@ public class Q210 {
         visited = new int[numCourses];
         for(int[] p : pres) {
             // Need get res array with stack.
-            graph.computeIfAbsent(p[1], x -> new ArrayList<>()).add(p[0]);
+            graph.computeIfAbsent(p[1], x -> new ArrayList<>()).add(p[0]);  //注意是P[1], P[0]
         }
 
         for(int i = 0; i < numCourses; i++) {
-            if(!dfs1(i)) {
+            if(!dfs1(i)) {  // i 如果有先修课,那么在之后会PUSH到STACK中,没有的话正好不管.
                 return new int[0];
             }
         }

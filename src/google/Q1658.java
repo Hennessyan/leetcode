@@ -18,7 +18,7 @@ public class Q1658 {
             // sum([left ,..., right]) = total - x
             current += nums[right];
             // if larger, move `left` to left
-            while (current > total - x && left <= right) {
+            while (current > total - x && left <= right) {  //必须有边界判断 -> [1,1] 3
                 current -= nums[left];
                 left += 1;
             }

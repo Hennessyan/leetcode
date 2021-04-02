@@ -29,7 +29,7 @@ public class Q47 {
             int num = entry.getKey();
             int count = entry.getValue();
 
-            if(count == 0) {
+            if(count == 0) {    // 注意这里!!!
                 continue;
             }
             list.add(num);
@@ -47,7 +47,7 @@ public class Q47 {
         if(nums == null || nums.length == 0) {
             return res;
         }
-        Arrays.sort(nums);
+        Arrays.sort(nums);  // 注意这里!!!
         int len = nums.length;
         visited = new boolean[len];
 

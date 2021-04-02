@@ -10,7 +10,7 @@ public class Q490 {
 
     // DFS : O(mn) O(mn)
     int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-    Set<Integer> set;
+    Set<Integer> set;   // do not ues int[] !!! MLE
     int m, n;
     public boolean hasPath(int[][] maze, int[] start, int[] dest) {
         m = maze.length;

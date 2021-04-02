@@ -73,7 +73,7 @@ public class Q23 {
     }
     /*method3 Merge with Divide And Conquer*/
     //O(Nlgk)
-    //O(1
+    //O(1)
     public ListNode mergeKLists(ListNode[] lists) {
         if(lists == null || lists.length == 0){
             return null;

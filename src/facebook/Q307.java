@@ -108,6 +108,7 @@ public class Q307 {
             return sum(right + 1) - sum(left);
         }
     }
+
     // this method shows why build tree is O(nlgn)
     class NumArray2 {
 

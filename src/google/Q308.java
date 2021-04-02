@@ -97,13 +97,13 @@ public class Q308 {
                 }
             }
         }
-
+        // O(n)
         public void update(int row, int col, int val) {
             int diff = val - data[row][col];
             update(row * n + col + 1, diff);
             data[row][col] = val;
         }
-
+        // O(nlgn)
         public int sumRegion(int row1, int col1, int row2, int col2) {
             int sum = 0;
             for(int r = row1; r <= row2; r++) {
@@ -134,7 +134,7 @@ public class Q308 {
         private int cols;
         private int[][] bit; // The BIT matrix
 
-        private int lsb(int n) {
+        private int lsb(int n) {    // least significant bit
             // the line below allows us to directly capture the right most non-zero bit of a number
             return n & (-n);
         }
@@ -148,7 +148,7 @@ public class Q308 {
                 }
             }
         }
-
+        // O(lgn * lgm)
         private int queryBIT(int r, int c) {
             int sum = 0;
             // keep subtracting lsb(i) to i, lsb(j) to j and obtain the final sum as the sum of non-overlapping sub-rectangles
@@ -160,7 +160,7 @@ public class Q308 {
             }
             return sum;
         }
-
+        // O(mn * lgm * lgn)
         private void buildBIT(int[][] matrix) {
             for (int i = 1; i <= rows; ++i) {
                 for (int j = 1; j <= cols; ++j) {
@@ -181,7 +181,7 @@ public class Q308 {
                 bit[i] = new int[cols + 1];
             buildBIT(matrix);
         }
-
+        //O(lgn * lgm)
         public void update(int row, int col, int val) {
             int old_val = sumRegion(row, col, row, col);
             // handling 1-based indexing
