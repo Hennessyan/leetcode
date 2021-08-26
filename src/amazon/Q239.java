@@ -4,7 +4,7 @@ import java.util.Deque;
 import java.util.LinkedList;
 
 // Sliding Window Maximum
-public class Q239 {
+public class  Q239 {
     // O(n) O(n)
     Deque<Integer> deque;   // ArrayDeque is fine.
     public int[] maxSlidingWindow(int[] nums, int k) {

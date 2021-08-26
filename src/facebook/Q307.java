@@ -2,6 +2,7 @@ package facebook;
 
 import java.util.Arrays;
 
+// Range Sum Query - Mutable
 public class Q307 {
 
 

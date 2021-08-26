@@ -117,7 +117,7 @@ public class Q236 {
                     stack.push(new Pair<>(child, BOTH_PENDING));
                 }
             } else {
-                if(stack.pop().getKey() == LCA && one_side_done) {
+                if(stack.pop().getKey() == LCA && one_side_done) {  // no need check one_side_done actually.
                     LCA = stack.peek().getKey();
                 }
             }

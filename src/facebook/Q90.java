@@ -6,7 +6,7 @@ import java.util.List;
 
 // Subsets II
 public class Q90 {
-    // O(N*2^N) O(N*2^N)
+    // O(N*2^N) O(N*2^N) / O(N) - stack, if do not consider result space.
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
         if(nums == null) return res;
@@ -28,5 +28,23 @@ public class Q90 {
             backtrack(nums, i + 1, list, res);
             list.remove(list.size() - 1);
         }
+    }
+    // O(N*2^N) O(lgn) - sort
+    public List<List<Integer>> subsetsWithDup2(int[] nums) {
+
+        Arrays.sort(nums);
+        List<List<Integer>> res = new ArrayList<>();
+        res.add(new ArrayList<>());
+        int start, end = 0;
+        for(int i = 0; i < nums.length; i++) {
+            start = (i > 0 && nums[i] == nums[i - 1]) ? end : 0;
+            end = res.size();
+            for(int j = start; j < end; j++) {
+                List<Integer> list = new ArrayList<>(res.get(j));
+                list.add(nums[i]);
+                res.add(list);
+            }
+        }
+        return res;
     }
 }

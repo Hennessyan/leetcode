@@ -76,7 +76,7 @@ public class Q410 {
         return memo[i][j] = res;
     }
 
-    //Binary search: O(lg(sum(nums)*n) O(1) => O(n) O(1)
+    //Binary search: O(lg(sum(nums))*n) O(1) => O(n) O(1)
     public int splitArray(int[] nums, int m) {
         long l = max(nums);
         long r = sum(nums) + 1;

@@ -18,4 +18,19 @@ public class Q19 {
         slow.next = slow.next.next;
         return dummy.next;
     }
+
+    public ListNode removeNthFromEnd1(ListNode head, int n) {
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode cur = dummy, node = dummy;
+        while(n-- > 0) {
+            cur = cur.next;
+        }
+        while(cur.next != null) {
+            cur = cur.next;
+            node=  node.next;
+        }
+        node.next = node.next.next;
+        return dummy.next;
+    }
 }

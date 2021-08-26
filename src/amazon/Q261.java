@@ -4,6 +4,7 @@ import java.util.*;
 
 // Graph Valid Tree
 // 查看LEETCODE的SOLUTION -> 当graph有N-1个EDGE的情况下我们不用担心会有CYCLE!!!
+// 但是我们还要检查是否所有的点都被访问 (only one valid tree.)
 public class Q261 {
     // BFS
     public boolean validTree(int n, int[][] edges) {

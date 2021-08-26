@@ -1,6 +1,7 @@
 package amazon;
 // Jump Game
 public class Q55 {
+    // corner case : [0]
 
     public boolean canJump(int[] nums) {
         if(nums == null || nums.length == 0) {

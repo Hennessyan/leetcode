@@ -172,7 +172,7 @@ public class Q505 {
 //
 //        while(!pq.isEmpty()) {
 //            int[] tmp = pq.poll();
-//            if(tmp[2] > dist[tmp[0]][tmp[1]]) {
+//            if(tmp[2] > dist[tmp[0]][tmp[1]]) {        // > rather than >=
 //                continue;
 //            }
 //            if(tmp[0] == d[0] && tmp[1] == d[1]) {    //注意这里!!! -> 90% faster than others

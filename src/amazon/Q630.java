@@ -10,7 +10,7 @@ public class Q630 {
 
     //注意这道题的特点是:之前选择的course如果duration>当前想选择的,可以直接替换,
     //因为替换后的课程必定会满足约束条件(详细分析见approach3第五段)
-    //O(n*count) O(1)
+    //O(n*count) O(1) - count is final val
     public int scheduleCourse(int[][] courses) {
         Arrays.sort(courses, (c1, c2) -> c1[1] - c2[1]);
         int count = 0, time = 0;

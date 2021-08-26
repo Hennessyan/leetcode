@@ -14,7 +14,7 @@ public class Q943 {
     // n! => n可以到10, 11 / 12就很勉强,需要PRE-PROCESSING & PRUNING.
     // https://www.youtube.com/watch?v=eG99FDBeuJo
 
-    // DFS : O(n!) O(n^2)
+    // DFS : O(n!) O(n^2) - TLE
     private int n;
     private int[][] g;
     private String[] a;
@@ -77,17 +77,28 @@ public class Q943 {
         }
         return len;
     }
-    // DP : O(2^n * n^2) O(n * 2^n)
+    // better than above method
+    private int getCost1(String a, String b) {
+        int alen = a.length(), blen = b.length(), min = Math.min(alen, blen);
+        int i = min;
+        for(;i >= 0; i--) {
+            if(a.endsWith(b.substring(0, i))) {
+                return blen - i;
+            }
+        }
+        return blen;
+    }
+    // DP : O(n^2 * (2^n + w)) O(n * (2^n + w)) w - longest length of word
     public String shortestSuperstring(String[] A) {
         n = A.length;
         g = new int[n][n];
-
+        // n^2 * w
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < n; j++) {
                 if(i == j) {
                     continue;
                 }
-                g[i][j] = getCost(A[i], A[j]);
+                g[i][j] = getCost1(A[i], A[j]);
             }
         }
 
@@ -103,12 +114,14 @@ public class Q943 {
             dp[1 << i][i] = A[i].length();
         }
 
-        for(int s = 1; s < (1 << n); s++) { // start from 1
+        for(int s = 1; s < (1 << n); s++) { // can start from 2
             for(int j = 0; j < n; j++) {
                 if((s & (1 << j)) == 0) {
                     continue;
                 }
                 int pre = s & ~(1 << j);
+//                int pre = s ^ (1 << j);
+//                if(pre == 0) continue;
                 for(int i = 0; i < n; i++) {
                     if(dp[pre][i] + g[i][j] < dp[s][j]) {
                         dp[s][j] = dp[pre][i] + g[i][j];

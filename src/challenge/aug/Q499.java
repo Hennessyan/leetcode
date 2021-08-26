@@ -47,7 +47,7 @@ public class Q499 {
             }
             x -= d[0];
             y -= d[1];
-            if (dist[b[0]][b[1]] + count < dist[x][y]) {
+            if (dist[b[0]][b[1]] + count < dist[x][y]) {    // don't use <=, first one is best choice.
                 dist[x][y] = dist[b[0]][b[1]] + count;
                 dfs(maze, new int[]{x, y}, h, dist, way);
             }

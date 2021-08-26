@@ -15,8 +15,8 @@ public class Q291 {
     }
 
     // O(n^m) => Cn-m   O(m)
-    // n - pattern.length()
-    // m - str.length()
+    // m - pattern.length()
+    // n - str.length()
     public boolean wordPatternMatch(String pattern, String str) {
         if (pattern == null || str == null || pattern.length() > str.length()) {
             return false;

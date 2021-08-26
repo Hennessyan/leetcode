@@ -21,7 +21,7 @@ public class Q215 {
         }
         return pq.peek();
     }
-    // quick sort, not stable: O(nlgn) - in average O(n^2) O(1)
+    // quick sort, not stable: O(n) - in average O(n^2) O(1)
     public int findKthLargest2(int[] nums, int k) {
         int l = 0, r = nums.length - 1;
         k = nums.length - k;

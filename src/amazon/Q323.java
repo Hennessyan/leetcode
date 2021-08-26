@@ -3,7 +3,72 @@ package amazon;
 import java.util.*;
 
 // Number of Connected Components in an Undirected Graph
+// Q547
 public class Q323 {
+    public int countComponents000(int n, int[][] edges) {
+        List<Integer>[] graph = new List[n];
+
+        for(int i = 0; i < n; i++) {
+            graph[i] = new ArrayList<>();
+        }
+        for(int[] edge : edges) {
+            graph[edge[0]].add(edge[1]);
+            graph[edge[1]].add(edge[0]);
+        }
+        int count = 0;
+        int[] seen = new int[n];
+        for(int i = 0; i < n; i++) {
+            if(seen[i] == 0) {
+                count++;
+                seen[i] = 1;
+                dfs(graph, seen, i);
+            }
+        }
+
+        return count;
+    }
+    private void dfs(List<Integer>[] graph, int[] seen, int u) {
+        for(int v : graph[u]) {
+            if(seen[v] == 0) {
+                seen[v] = 1;
+                dfs(graph, seen, v);
+            }
+        }
+    }
+
+    public int countComponents111(int n, int[][] edges) {
+        List<Integer>[] graph = new List[n];
+
+        for(int i = 0; i < n; i++) {
+            graph[i] = new ArrayList<>();
+        }
+        for(int[] edge : edges) {
+            graph[edge[0]].add(edge[1]);
+            graph[edge[1]].add(edge[0]);
+        }
+        int count = 0;
+        int[] seen = new int[n];
+        Queue<Integer> queue = new LinkedList<>();
+
+        for(int i = 0; i < n; i++) {
+            if(seen[i] == 0) {
+                count++;
+                queue.add(i);
+                seen[i] = 1;
+                while(!queue.isEmpty()) {
+                    int u = queue.poll();
+                    for(int v : graph[u]) {
+                        if(seen[v] == 0) {
+                            queue.add(v);
+                            seen[v] = 1;
+                        }
+                    }
+                }
+            }
+        }
+
+        return count;
+    }
 
     /*method1 BFS*/
     public int countComponents0(int n, int[][] edges) {	//1 []  返回 1，因此不要判断太多edge case,容易出错
