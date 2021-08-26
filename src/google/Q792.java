@@ -34,6 +34,7 @@ public class Q792 {
         return i == cb.length;
     }
     // O(s + w * l) O(w * l)
+    // S is very long, so we hope to traverse it only once.
     public int numMatchingSubseq2(String S, String[] words) {
         List<Node>[] lists = new List[26];
         for(int i = 0; i < 26; i++) {
@@ -76,7 +77,7 @@ public class Q792 {
             waiting[w.charAt(0) - 'a'].add(new StringBuilder(w));
 
         for (char c : S.toCharArray()) {
-            List<StringBuilder> advance = waiting[c];
+            List<StringBuilder> advance = waiting[c - 'a'];
 
             waiting[c] = new ArrayList();
 

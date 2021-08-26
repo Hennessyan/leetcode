@@ -32,7 +32,7 @@ public class Q445 {
         }
         return head.val == 0 ? head.next : head;
     }
-    // take more times, and space is O(max(m,n))
+    // take more time, and space is O(max(m,n))
     public ListNode addTwoNumbers1(ListNode l1, ListNode l2) {
         // find the length of both lists
         int n1 = 0, n2 = 0;

@@ -40,4 +40,20 @@ public class Q89 {
             backtrack(i + 1, n, list);
         }
     }
+
+    // 0        0     |      00
+    // 1        1     |      00
+    // 2        3     |      01
+    // 3        2     |      01
+    // i    gray(i)   |   i >> 1 <=> i ^ gray(i) = x <=> i ^ x = gray(i)
+    public List<Integer> grayCode2(int n) {
+        List<Integer> result = new ArrayList<>();
+        // there are 2 ^ n numbers in the Gray code sequence.
+        int sequenceLength = 1 << n;
+        for (int i = 0; i < sequenceLength; i++) {
+            int num = i ^ i >> 1;     // i ^ (i >> 1);
+            result.add(num);
+        }
+        return result;
+    }
 }

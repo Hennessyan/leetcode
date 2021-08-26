@@ -27,7 +27,7 @@ public class Q259 {
         int l = start, r = nums.length - 1;
         while(l < r) {
             int mid = (l + r + 1) / 2;  //注意这里取upper bound, otherwise will not terminate.
-            if(nums[mid] < target) {
+            if(nums[mid] < target) {    //l = 2, r = 3 => if nums[2] < target, will infinite loop if we use (l + r) / 2, but upper bound will check mid = 3 first !
                 l = mid;
             } else {
                 r = mid - 1;

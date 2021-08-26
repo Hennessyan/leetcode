@@ -2,10 +2,14 @@ package amazon;
 
 import java.util.Collections;
 import java.util.PriorityQueue;
+import java.util.Scanner;
 
 // Find Median from Data Stream
 public class Q295 {
-    // O(5lgn) O(n)
+    // idea1 : sort whole list
+    // idea2 : binary search to find insert position, then insert it (O(n+lgn) O(n))
+
+    // idea3 : O(5lgn) O(n)
     class MedianFinder {
 
         PriorityQueue<Integer> minHeap;

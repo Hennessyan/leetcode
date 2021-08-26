@@ -19,7 +19,7 @@ public class Q1331 {
         int index = 1;
         Map<Integer, Integer> map = new HashMap<>();
         for(int t : tmp) {
-            if(!map.containsKey(t)) {
+            if(!map.containsKey(t)) {   // index will increase if use putIfAbsent, wrong !
                 map.put(t, index++);
             }
         }

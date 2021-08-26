@@ -147,4 +147,51 @@ public class Q505 {
             }
         }
     }
+
+    boolean[][] seen;
+    int m, n;
+    public int shortestDistance4(int[][] maze, int[] s, int[] dest) {
+        m = maze.length;
+        n = maze[0].length;
+        seen = new boolean[m][n];
+
+        PriorityQueue<Point> pq = new PriorityQueue<>();
+        pq.offer(new Point(s[0], s[1], 0));
+        while(!pq.isEmpty()) {
+            Point p = pq.poll();
+            if(p.r == dest[0] && p.c == dest[1]) {
+                return p.dist;
+            }
+            if(seen[p.r][p.c]) continue;
+            seen[p.r][p.c] = true;
+            for(int[] d : dirs) {
+                int r = p.r, c = p.c, step = p.dist;
+                while(r + d[0] >= 0 && r + d[0] < m &&
+                        c + d[1] >= 0 && c + d[1] < n && maze[r + d[0]][c + d[1]] == 0) {
+                    step++;
+                    r += d[0];
+                    c += d[1];
+                }
+
+                if(!seen[r][c]) {
+                    pq.offer(new Point(r, c, step));
+                }
+            }
+
+        }
+        return -1;
+    }
+    class Point implements Comparable<Point> {
+        int r, c;
+        int dist;
+        public Point(int r, int c, int dist) {
+            this.r = r;
+            this.c = c;
+            this.dist = dist;
+        }
+        @Override
+        public int compareTo(Point that) {
+            return this.dist - that.dist;
+        }
+    }
 }
