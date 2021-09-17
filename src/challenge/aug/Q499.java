@@ -55,6 +55,9 @@ public class Q499 {
     }
 
     // O(mnlgmn) O(mn)
+    // can't use dist[][] here, ul vs lul for below case
+//    Input: maze = [[0,0,0,0,0],[1,1,0,0,1],[0,0,0,0,0],[0,1,0,0,1],[0,1,0,0,0]], ball = [4,3], hole = [0,1]
+//    Output: "lul"
     public String findShortestWay2(int[][] maze, int[] ball, int[] hole) {
         int m = maze.length;
         int n = maze[0].length;

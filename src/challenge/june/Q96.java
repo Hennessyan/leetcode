@@ -7,6 +7,7 @@ public class Q96 {
         System.out.println(q.numTrees(3));  // 5
     }
     // O(n^2) O(n)
+    // dp[i] - # of combinations for i nodes.
     public int numTrees(int n) {
         int[] dp = new int[n + 1];
         dp[0] = 1;

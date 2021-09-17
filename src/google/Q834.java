@@ -9,7 +9,7 @@ public class Q834 {
     // sum[y] = x@X + y@Y + #X
     // sum[x] - sum[y] = #Y - #X
     // assume we split tree as two parts: X and Y
-    // x@X - sum if x in X part
+    // x@X - sum of distance from x to its subnodes in X part
     // #X - number of node in X part
     int N;
     int[] count, ans;
@@ -44,6 +44,8 @@ public class Q834 {
     private void dfs2(int cur, int parent) {
         for(int child : graph.get(cur)) {
             if(child != parent) {
+                // compared with ans[cur], ans[child] will deduct the whole child part (#x) -> count[child]
+                // then add the another part (#y) -> n - count[child]
                 ans[child] = ans[cur] + N - count[child] - count[child];
                 dfs2(child, cur);
             }
