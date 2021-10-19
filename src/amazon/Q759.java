@@ -58,6 +58,7 @@ public class Q759 {
                 res.add(new Interval(start, tmp_start));
             }
             start = Math.max(start, interval.end);
+            // we will keep calculating even one employee reach out the end !!!
             if(++job.i < schedule.get(job.e).size()) {
                 pq.offer(job);
             }

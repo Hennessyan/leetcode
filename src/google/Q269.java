@@ -8,7 +8,7 @@ public class Q269 {
     // C - total number of chars
     // U - unique chars
     // N - length of words
-    // O(V+E) : V == U, E == min(N, U ^ 2)
+    // O(V+E) : V == U, E == min(N, U ^ 2), SC -> O(1) as U is fixed by 26.
     // bfs
     public String alienOrder(String[] words) {
         if(words == null || words.length == 0) {    //["abcd"] => "abcd"

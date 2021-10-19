@@ -6,6 +6,7 @@ import javafx.util.Pair;
 import java.util.*;
 
 // Lowest Common Ancestor of a Binary Tree
+// Q993
 public class Q236 {
     // Recursive Approach : O(n) O(n) - 100%
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
@@ -114,7 +115,7 @@ public class Q236 {
                     stack.push(new Pair(child, BOTH_PENDING));
                 }
             } else {
-                if(LCA == stack.pop().getKey() && one_node_done) {
+                if(LCA == stack.pop().getKey()) {
                     LCA = stack.peek().getKey();
                 }
             }

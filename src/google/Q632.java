@@ -65,7 +65,7 @@ public class Q632 {
     }
 
     //O(total*lgm) O(m)
-    public int[] smallestRange2(List<List<Integer>> nums) {	//每行的元素数不想等,因此不能用m*n
+    public int[] smallestRange2(List<List<Integer>> nums) {	//每行的元素数不相等,因此不能用m*n
         int[] next = new int[nums.size()];
         int minx = 0, miny = Integer.MAX_VALUE;
         PriorityQueue<Integer> pq = new PriorityQueue<>((i1, i2) -> (nums.get(i1).get(next[i1]) - nums.get(i2).get(next[i2])));

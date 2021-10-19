@@ -1,6 +1,7 @@
 package amazon;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 // Combination Sum
@@ -32,8 +33,29 @@ public class Q39 {
             list.remove(list.size() - 1);
         }
     }
-    // DP : https://leetcode.com/problems/combination-sum/solution/
+
     public List<List<Integer>> combinationSum1(int[] candidates, int target) {
+        List<List<Integer>> res = new ArrayList<>();
+        Arrays.sort(candidates);
+        backtrack(candidates, 0, new ArrayList<>(), res, target);
+        return res;
+    }
+    private void backtrack(int[] candidates, int start, List<Integer> list,
+                           List<List<Integer>> res, int target) {
+        if(target == 0) {
+            res.add(new ArrayList<>(list));
+            return;
+        } // else if(target < 0) return;
+        for(int i = start; i < candidates.length; i++) {
+            if(target - candidates[i] < 0) return;
+            list.add(candidates[i]);
+            backtrack(candidates, i, list, res, target - candidates[i]);
+            list.remove(list.size() - 1);
+        }
+    }
+
+    // DP : https://leetcode.com/problems/combination-sum/solution/
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
         List<List<Integer>>[] dp = new List[target + 1];
         for (int i = 0; i <= target; i++)
             dp[i] = new ArrayList<>();

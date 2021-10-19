@@ -10,7 +10,7 @@ public class Q79 {
 
         for(int i = 0; i < m; i++) {
             for(int j = 0; j < n; j++) {
-                if(find(board, i, j, 0, word)) {
+                if(dfs(board, i, j, 0, word)) {
                     return true;
                 }
             }
@@ -18,22 +18,18 @@ public class Q79 {
         return false;
     }
 
-    private boolean find(char[][] board, int i, int j, int index, String word) {
-        if(index == word.length()) {
-            return true;
-        }
-        if(i < 0 || i == m || j < 0 || j == n || board[i][j] != word.charAt(index)) {
+    private boolean dfs(char[][] board, int r, int c, int i, String word) {
+        if(i == word.length()) return true;
+        if(r < 0 || r == m || c < 0 || c == n || board[r][c] != word.charAt(i)) {
             return false;
         }
-        board[i][j] ^= 256;
+        board[r][c] ^= 256;
+        boolean ans = false;
         for(int[] d : dirs) {
-            int x = d[0] + i;
-            int y = d[1] + j;
-            if(find(board, x, y, index + 1, word)) {
-                return true;
-            }
+            ans = dfs(board, r + d[0], c + d[1], i + 1, word);
+            if(ans) break;
         }
-        board[i][j] ^= 256;
-        return false;
+        board[r][c] ^= 256;
+        return ans;
     }
 }

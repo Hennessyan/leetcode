@@ -99,6 +99,7 @@ public class Q1345 {
                         s.add(v);
                     }
                 }
+                graph.get(arr[u]).clear();  // O(n) operation.
                 if(s2.contains(u + 1) || s2.contains(u - 1)) {
                     return step + 1;
                 }

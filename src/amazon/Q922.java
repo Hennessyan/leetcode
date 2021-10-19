@@ -23,8 +23,24 @@ public class Q922 {
                 int tmp = A[i];
                 A[i] = A[j];
                 A[j] = tmp;
+                j += 2;
             }
 
         return A;
+    }
+
+    public int[] sortArrayByParityII1(int[] nums) {
+        int i = 0, j = 1, n = nums.length;
+        while(i <= n - 2 && j < n) {    // j < n is not necessary.
+            if(nums[i] % 2 == 0) {
+                i += 2;
+            } else {
+                int tmp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = tmp;
+                j += 2;
+            }
+        }
+        return nums;
     }
 }

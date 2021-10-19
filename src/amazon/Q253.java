@@ -5,7 +5,7 @@ import java.util.PriorityQueue;
 import java.util.TreeMap;
 
 // Meeting Rooms II
-// similar question : Q1094
+// similar question : Q1094 Q452
 public class Q253 {
     // O(nlgn) O(n)
     public int minMeetingRooms(int[][] intervals) {

@@ -112,12 +112,13 @@ public class Q1696 {
 
     private int query(int left, int right, int[] tree, int n) {
         int result = Integer.MIN_VALUE;
-        for (left += n, right += n; left < right; left >>= 1, right >>= 1) {
+        // we may have negative value in segment tree, should use [l, r).
+        for (left += n, right += n; left < right; left >>= 1, right >>= 1) {    // left < right !!!
             if ((left & 1) == 1) {
                 result = Math.max(result, tree[left++]);
             }
             if ((right & 1) == 1) {
-                result = Math.max(result, tree[--right]);
+                result = Math.max(result, tree[--right]);   // --right !!!
             }
         }
         return result;

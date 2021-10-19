@@ -62,9 +62,10 @@ public class Q40 {
                            List<int[]> counter,
                            List<List<Integer>> results) {
 
-        if (remain == 0) {
-            // make a deep copy of the current combination.
-            results.add(new ArrayList<Integer>(comb));
+        if (remain <= 0) {
+            if (remain == 0) {
+                results.add(new ArrayList<Integer>(comb));
+            }
             return;
         }
 
@@ -75,15 +76,14 @@ public class Q40 {
             if (freq <= 0)
                 continue;
 
-            // add a new element to the current combination
             comb.addLast(candidate);
-            counter.set(nextCurr, new int[]{candidate, freq - 1});
+            entry[1]--;
+            // counter.set(nextCurr, new int[]{candidate, freq - 1});
 
-            // continue the exploration with the updated combination
             backtrack(comb, remain - candidate, nextCurr, counter, results);
 
-            // backtrack the changes, so that we can try another candidate
-            counter.set(nextCurr, new int[]{candidate, freq});
+            // counter.set(nextCurr, new int[]{candidate, freq});
+            entry[1]++;
             comb.removeLast();
         }
     }

@@ -7,6 +7,8 @@ import java.util.List;
 
 // Path Sum II
 public class Q113 {
+    // O(nlgn) O(lgn) - depth is lgn, n / 2 leaves.
+    // vs
     // O(n^2) O(n)
     public List<List<Integer>> pathSum(TreeNode root, int sum) {
         List<List<Integer>> res = new ArrayList<>();

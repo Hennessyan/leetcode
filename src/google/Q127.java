@@ -45,7 +45,7 @@ public class Q127 {
     }
     // unidirectional : b^0 + b^1 + ... + b^l <= 2*b^l ====> b^l
     // bi-directional : 2 * (b^0 + b^1 + ... + b^(l/2)) ====> b^(l/2)
-    // O(nm^2) ??
+    // O(nm^2) ?? - https://jerring.github.io/2019/01/05/leetcode-00127/ ??
     // O(n*26^(l/2)) O(n)
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
         Set<String> set = new HashSet<>(wordList);

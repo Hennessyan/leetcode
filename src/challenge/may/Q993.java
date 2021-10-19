@@ -35,6 +35,7 @@ public class Q993 {
         return this.isCousin;
     }
     private boolean dfs(TreeNode root, int depth, int x, int y) {
+        if(isCousin) return true;
         if(root == null) {
             return false;
         }
