@@ -12,9 +12,9 @@ public class Q937 {
             String[] s2 = l2.split(" ", 2);
             boolean isDigit1 = Character.isDigit(s1[1].charAt(0));
             boolean isDigit2 = Character.isDigit(s2[1].charAt(0));
-            if(!isDigit1 && !isDigit2) {
+            if (!isDigit1 && !isDigit2) {
                 int val = s1[1].compareTo(s2[1]);
-                if(val != 0) {
+                if (val != 0) {
                     return val;
                 }
                 return s1[0].compareTo(s2[0]);

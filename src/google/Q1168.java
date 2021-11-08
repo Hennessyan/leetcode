@@ -3,6 +3,7 @@ package google;
 import java.util.*;
 
 // Optimize Water Distribution in a Village
+// Q1584 Q1135
 public class Q1168 {
     // will not return -1 as virtual edge always exist (-1 ~ well itself)
 
@@ -52,12 +53,13 @@ public class Q1168 {
             pairs.add(p);
         }
         Collections.sort(pairs, (p1, p2) -> p1[2] - p2[2]);
-        int total = 0;
+        int total = 0, count = 0;
         UnionFind uf = new UnionFind(n);
 
         for(int[] p : pairs) {
             if(uf.union(p[0], p[1])) {
                 total += p[2];
+                if(++count == n) break;
             }
         }
         return total;

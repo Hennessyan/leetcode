@@ -20,4 +20,18 @@ public class Q974 {
         }
         return ans;
     }
+
+    public int subarraysDivByK1(int[] nums, int k) {
+        int n = nums.length;
+        int[] count = new int[k];
+        count[0] = 1;
+        int ans = 0, sum = 0;
+        for(int num : nums) {
+            sum += num;
+            int index = (sum % k + k) % k;
+            ans += count[index];
+            count[index]++;
+        }
+        return ans;
+    }
 }

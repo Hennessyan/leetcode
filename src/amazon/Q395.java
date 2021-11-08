@@ -38,6 +38,31 @@ public class Q395 {
 
         return result;
     }
+    // use this method.
+    public int longestSubstring1(String s, int k) {
+        if(s == null || s.length() < k) return 0;
+        int uniques = getMaxUniqueLetters(s);
+        int ans = 0, n = s.length();
+        int[] fre = new int[26];
+        for(int uni = 1; uni <= uniques; uni++) {
+            int count = 0, l = 0, r = 0, atLeastK = 0;
+            Arrays.fill(fre, 0);
+            while(r < n) {
+                int cur = s.charAt(r++) - 'a';
+                if(fre[cur] == 0) count++;
+                if(++fre[cur] == k) atLeastK++;
+                while(count > uni) {
+                    int pre = s.charAt(l++) - 'a';
+                    if(fre[pre] == k) atLeastK--;
+                    if(--fre[pre] == 0) count--;
+                }
+                if(count == uni && count == atLeastK) {
+                    ans = Math.max(ans, r - l);
+                }
+            }
+        }
+        return ans;
+    }
 
     // get the maximum number of unique letters in the string s
     int getMaxUniqueLetters(String s) {

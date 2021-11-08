@@ -66,10 +66,10 @@ public class Q426 {
         while(node != null) {
             if(node.left == null) {
                 if(head == null) head = node;
-                if(prev != null) {
-                    prev.right = node;
-                    node.left = prev;
-                }
+                if(prev != null) {                      // prev.right = node is necessary for below case:
+                    prev.right = node;                  //      2
+                    node.left = prev;                   //         5
+                }                                       //       4    6
                 prev = node;
                 node = node.right;
             } else {

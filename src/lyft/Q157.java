@@ -16,16 +16,14 @@ public class Q157 {
 //     * @return    The number of actual characters read
 //     */
 //    public int read(char[] buf, int n) {
-//        char[] read4buf = new char[4];
 //        int i = 0;
-//        while(true) {
-//            int index = read4(read4buf);
-//            for(int j = 0; j < index && i < n; j++) {
-//                buf[i++] = read4buf[j];
+//        char[] buf4 = new char[4];
+//        while(i < n) {
+//            int m = read4(buf4);
+//            for(int j = 0; j < m && i < n; j++) {
+//                buf[i++] = buf4[j];
 //            }
-//            if(index < 4 || i == n) {
-//                break;
-//            }
+//            if(m < 4) break;
 //        }
 //        return i;
 //    }

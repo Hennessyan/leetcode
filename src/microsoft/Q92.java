@@ -30,6 +30,30 @@ public class Q92 {
 
         return fake_head.next;
     }
+
+    ListNode l = null;
+    boolean stop = false;
+    public ListNode reverseBetween1(ListNode head, int left, int right) {
+        l = head;
+        help(head, left, right);
+        return head;
+    }
+    private void help(ListNode r, int m, int n) {
+        if(n == 1) return;
+        if(m > 1) l = l.next;
+        r = r.next;
+        help(r, m - 1, n - 1);
+        if(l == r || r.next == l) {
+            stop = true;
+        }
+        if(!stop) {
+            int val = l.val;
+            l.val = r.val;
+            r.val = val;
+            l = l.next;
+        }
+    }
+
     /*method3 complex*/
 //	public ListNode reverseBetween(ListNode head, int m, int n) {
 //	    if(head == null) return null;

@@ -26,4 +26,19 @@ public class Q283 {
             nums[index++] = 0;
         }
     }
+    // in case most of num is zero - optimal.
+    public void moveZeroes1(int[] nums) {
+        if(nums == null || nums.length < 2) return;
+        for(int i = 0, j = 0; j < nums.length; j++) {
+            if(nums[j] != 0) {
+                swap(nums, i, j);
+                i++;
+            }
+        }
+    }
+    private void swap(int[] nums, int i, int j) {
+        int tmp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = tmp;
+    }
 }

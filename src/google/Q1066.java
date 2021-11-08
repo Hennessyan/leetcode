@@ -5,7 +5,7 @@ import java.util.Map;
 
 // Campus Bikes II
 public class Q1066 {
-    //backtracking : O(mn) O(mn)
+    //backtracking : O(n*2^n) O(2^n) ?? each status (occupy) will be calculated once.
     public int assignBikes(int[][] workers, int[][] bikes) {
         Map<Integer, Integer> memo = new HashMap<>();
         return dfs(workers, 0, bikes, 0, memo);

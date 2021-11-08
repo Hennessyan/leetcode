@@ -24,6 +24,29 @@ public class Q22 {
             backtrack(res, str + ")", l, r - 1);
         }
     }
+    // faster than above method.
+    public List<String> generateParenthesis1(int n) {
+        List<String> res = new ArrayList<>();
+        backtrack(n, n, new StringBuilder(), res);
+        return res;
+    }
+    private void backtrack(int l, int r, StringBuilder sb, List<String> res) {
+        if(r == 0) {
+            res.add(sb.toString());
+            return;
+        }
+        if(l > 0) {
+            sb.append('(');
+            backtrack(l - 1, r, sb, res);
+            sb.deleteCharAt(sb.length() - 1);
+        }
+        if(l < r) {
+            sb.append(')');
+            backtrack(l, r - 1, sb, res);
+            sb.deleteCharAt(sb.length() - 1);
+        }
+    }
+
     // brute force - backtrack
     // O(2^(2n) * n)
     // O(2^(2n) * n) - naively, each combination can be result

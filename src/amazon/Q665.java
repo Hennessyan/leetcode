@@ -8,7 +8,7 @@ public class Q665 {
             if(nums[i - 1] > nums[i]) {
                 if(canModify) {
                     canModify = !canModify;
-
+                    // keep current num as less as possible!
                     if(i == 1 || nums[i - 2] <= nums[i]) {  // [1,4,1,2]
                         nums[i - 1] = nums[i];
 

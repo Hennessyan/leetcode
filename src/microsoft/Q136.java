@@ -7,7 +7,7 @@ public class Q136 {
         int[] nums = {4,1,2,1,2};
         System.out.println(q.singleNumber(nums));   // 4
     }
-
+    // xor
     public int singleNumber(int[] nums) {
         int res = 0;
         for(int n : nums) {

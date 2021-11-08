@@ -53,4 +53,6 @@ public class Q889 {
         node.right = build(pre, tmp + 1, r - 1);
         return node;
     }
+    // 2 1 3
+    // 1 3 2
 }
