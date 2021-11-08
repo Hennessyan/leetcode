@@ -54,12 +54,15 @@ public class Q290 {
     }
 
     //O(n) O(n)
+    // This is because if you use primitive int as a key/value for generic map,
+    // java will convert it into Integer then save the converted Integer into map,
+    // and "==" or "!=" only works for Integer whos value is below 127.
     public boolean wordPattern1(String pattern, String str) {
         String[] words = str.split(" ");
         if (words.length != pattern.length())
             return false;
         Map<Object, Integer> index = new HashMap<>();    //注意类型
-        for (Integer i = 0; i < words.length; ++i)        //不能用int,会报错，很奇怪
+        for (Integer i = 0; i < words.length; ++i)        //不能用int,会报错
             if (index.put(pattern.charAt(i), i) != index.put(words[i], i))
                 return false;
         return true;

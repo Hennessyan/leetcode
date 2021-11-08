@@ -29,12 +29,26 @@ public class Q930 {
         return count;
     }
 
+    public int numSubarraysWithSum1(int[] nums, int goal) {
+        int sum = 0, count = 0;
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(0, 1);
+        for(int num : nums) {
+            sum += num;
+            count += map.getOrDefault(sum - goal, 0);
+            map.put(sum, map.getOrDefault(sum, 0) + 1);
+        }
+        return count;
+    }
+
     //https://leetcode.com/problems/binary-subarrays-with-sum/solution/
     //method1: O(n) O(n)
-    public int numSubarraysWithSum1(int[] A, int S) {
-        int su = 0;
-        for(int a : A) su += a;
-        int[] index = new int[su + 2];
+    public int numSubarraysWithSum2(int[] A, int S) {
+        int sum = 0, total = 0;
+        for(int a : A) {
+            sum += a;
+        }
+        int[] index = new int[sum + 2];
         int t = 0;
         index[t++] = -1;
         for(int i = 0; i < A.length; i++) {
@@ -43,26 +57,23 @@ public class Q930 {
             }
         }
         index[t] = A.length;
-
-        int ans = 0;
         if(S == 0) {
-            for(int i = 0; i < A.length - 1; i++) {
-                int w = index[i + 1] - index[i];
-                ans += w * (w + 1) / 2;
+            for(int i = 0; i < t; i++) {
+                int w =  index[i + 1] - index[i] - 1;
+                total += w * (w + 1) / 2;
             }
-            return ans;
+            return total;
         }
-
-        for(int i = 1; i < A.length - S; i++) {
-            int j = i + S - 1;
-            int l = index[i] - index[i - 1];
-            int r = index[j + 1] - index[j];
-            ans += l * r;
+        for(int i = 1; i <= t - S; i++) {
+            int j = i + S;
+            int left = index[i] - index[i - 1] ;
+            int right = index[j] - index[j - 1];
+            total += left * right;
         }
-        return ans;
+        return total;
     }
 
-    public int numSubarraysWithSum2(int[] A, int S) {
+    public int numSubarraysWithSum3(int[] A, int S) {
         int sumL = 0, sumH = 0;
         int iL = 0, iH = 0;
         int ans = 0;

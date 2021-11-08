@@ -15,6 +15,18 @@ public class Q186 {
         }
         reverse(s, i, j - 1);
     }
+    public void reverseWords1(char[] s) {
+        reverse(s, 0, s.length - 1);
+        int l = 0, r = 0, n = s.length;
+        while(r < n) {
+            while(r < n && s[r] != ' ') {
+                r++;
+            }
+            reverse(s, l, r - 1);
+            r++;
+            l = r;
+        }
+    }
     private void reverse(char[] s,int l, int r) {
         while(l < r) {
             char c  = s[l];

@@ -4,7 +4,7 @@ import java.util.PriorityQueue;
 
 // The K Weakest Rows in a Matrix
 public class Q1337 {
-    // O(mlgn + mlgnk) => O(mlg(nk)) O(m + k)
+    // O(mlgn + mlgk) => O(mlg(nk)) O(m + k)
     public int[] kWeakestRows(int[][] mat, int k) {
         if(mat == null || mat.length == 0) {
             return new int[0];

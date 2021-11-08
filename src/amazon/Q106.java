@@ -7,6 +7,27 @@ import java.util.Stack;
 // Construct Binary Tree from Inorder and Postorder Traversal
 public class Q106 {
 
+//    Map<Integer, Integer> index;
+//    int pi;
+//    public TreeNode buildTree(int[] inorder, int[] postorder) {
+//        index = new HashMap<>();
+//        int n = inorder.length;
+//        pi = n - 1;
+//        for(int i = 0; i < n; i++) {
+//            index.put(inorder[i], i);
+//        }
+//        return build(postorder, 0, n - 1);
+//    }
+//    private TreeNode build(int[] arr, int l, int r) {
+//        if(l > r) return null;
+//        TreeNode root = new TreeNode(arr[pi--]);
+//        int tmp = index.get(root.val);
+//        root.right = build(arr, tmp + 1, r);
+//        root.left = build(arr, l, tmp - 1);
+//        return root;
+//    }
+
+
     /*method1*/
 //	public TreeNode buildTree(int[] inorder, int[] postorder) {
 //        if(inorder == null || postorder == null || inorder.length != postorder.length)

@@ -7,11 +7,14 @@ public class Q1648 {
 
     //应该用二分法才是比较好的
     //https://leetcode-cn.com/problems/sell-diminishing-valued-colored-balls/solution/xiao-shou-jie-zhi-jian-shao-de-yan-se-qiu-by-zerot/
+    //https://leetcode-cn.com/problems/sell-diminishing-valued-colored-balls/solution/liang-chong-si-lu-you-hua-tan-xin-suan-fa-you-hua-/
     //二分找到的是阙值，保证高于这个数的操作数少于orders
     //然后计算总利润，最后可能还剩余几个orders，直接根据阙值补上个数就行
+    // O(nlgM) O(1) M -> 1e9+7
     public int maxProfit(int[] inventory, int orders) {
         int mod = (int)(1e9 + 7);
-        int l = 0,r = maxNum(inventory);
+        int l = 0, r = mod; // r = maxNum(inventory); - not correct [3,3,3] 2 => return 7 rather than 6 !!!
+        // 二分查找 最后一次卖出时，球的价格 k
         while(l < r){
             int mid = l + (r - l) / 2;
             if(provideOrders(inventory, mid) <= orders){
@@ -40,16 +43,9 @@ public class Q1648 {
         return orders;
     }
 
-    private int maxNum(int[] inventory){
-        int max = 0;
-        for(int num : inventory){
-            max = Math.max(max,num);
-        }
-        return max;
-    }
-
     // https://zxi.mytechroad.com/blog/greedy/leetcode-1648-sell-diminishing-valued-colored-balls/
     // be careful the long type variable defined below:
+    // O(nlgn) O(n)
     public int maxProfit1(int[] inv, int orders) {
         int mod = (int) (1e9 + 7);
         int n = inv.length, i = 0;

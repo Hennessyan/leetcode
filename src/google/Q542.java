@@ -75,6 +75,31 @@ public class Q542 {
         }
         return matrix;
     }
+
+    public int[][] updateMatrix2(int[][] mat) {
+        int m = mat.length, n = mat[0].length, inf = 10000;
+        for(int r = 0; r < m; r++) {
+            for(int c = 0; c < n; c++) {
+                if(mat[r][c] != 0) {
+                    int top = r == 0 ? inf : mat[r-1][c];
+                    int left = c == 0 ? inf : mat[r][c-1];
+                    mat[r][c] = Math.min(top,left) + 1;
+                }
+            }
+        }
+
+        for(int r = m - 1; r >= 0; r--) {
+            for(int c = n - 1; c >= 0; c--) {
+                if(mat[r][c] != 0) {
+                    int down = r == m - 1 ? inf : mat[r+1][c];
+                    int right = c == n - 1 ? inf : mat[r][c+1];
+                    mat[r][c] = Math.min(mat[r][c], Math.min(down ,right) + 1);
+                }
+            }
+        }
+        return mat;
+    }
+
     //DFS O(rc*rc) O(rc)
     public int[][] updateMatrix1(int[][] matrix) {
         int r = matrix.length, c = matrix[0].length;

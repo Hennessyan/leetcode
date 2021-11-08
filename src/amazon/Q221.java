@@ -8,7 +8,7 @@ public class Q221 {
         int[] dp = new int[n + 1];
         // int pre = 0; // pre can be here rather than L11, but L11 is more reasonable.
         for(int i = 1; i <= m; i++) {
-            int pre = 0;
+            int pre = 0;    // the reason why pre can in L9 rather than here is we will check dp[j-1] in L15, dp[0] always 0, then we don't care about pre !!
             for(int j = 1; j <= n; j++) {
                 int tmp = dp[j];
                 if(matrix[i - 1][j - 1] == '1') {

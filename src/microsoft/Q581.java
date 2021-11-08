@@ -37,31 +37,21 @@ public class Q581 {
     }
     // O(n) O(1)
     public int findUnsortedSubarray3(int[] nums) {
-        int len = nums.length;
-        int min = Integer.MAX_VALUE, max = Integer.MIN_VALUE;
-        for(int i = 1; i < len; i++) {
+        int n = nums.length, min = Integer.MAX_VALUE, max = Integer.MIN_VALUE;
+        for(int i = 1; i < n; i++) {
             if(nums[i] < nums[i - 1]) {
-                min = Math.min(min, nums[i]);   // find minimum value that needs to swap the order, not the global minimum
+                min = Math.min(min, nums[i]);
+                max = Math.max(max, nums[i - 1]);
             }
         }
-        for(int i = len - 2; i >= 0; i--) {
-            if(nums[i] > nums[i + 1]) {
-                max = Math.max(max, nums[i]);   // find maximum value that needs to swap the order, not the global maximum
-            }
+        int l = 0, r = n - 1;
+        while(l < n && nums[l] <= min) {
+            l++;
         }
-
-        int l, r;
-        for(l = 0; l < len; l++) {
-            if(nums[l] > min) {                 // find the correct left bound of swap position
-                break;
-            }
+        while(r >= 0 && nums[r] >= max) {
+            r--;
         }
-        for(r = len - 1; r >= 0; r--) {         // find the correct right bound of swap position
-            if(nums[r] < max) {
-                break;
-            }
-        }
-        return r - l < 0 ? 0 : r - l + 1;
+        return l > r ? 0 : r - l + 1;
     }
     // O(n) O(1)
     public int findUnsortedSubarray0(int[] nums) {

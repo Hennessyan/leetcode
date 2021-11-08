@@ -10,7 +10,7 @@ public class Q126 {
 
     // bidirectional:
     // O(n*26^(l/2))
-    // O(n + k * length of result)  k = number of result
+    // O(nl + k * length of result)  k = number of result
     public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
         List<List<String>> res = new ArrayList<>();
         Set<String> s0 = new HashSet<>(wordList);

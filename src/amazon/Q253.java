@@ -5,6 +5,7 @@ import java.util.PriorityQueue;
 import java.util.TreeMap;
 
 // Meeting Rooms II
+// similar question : Q1094 Q452
 public class Q253 {
     // O(nlgn) O(n)
     public int minMeetingRooms(int[][] intervals) {
@@ -16,6 +17,7 @@ public class Q253 {
         PriorityQueue<Integer> endQueue = new PriorityQueue<>((a, b) -> a - b);
         endQueue.add(intervals[0][1]);
         for(int i = 1; i < len; i++) {
+            // if rather than while !!!
             if(endQueue.peek() <= intervals[i][0]) {
                 endQueue.poll();
             }

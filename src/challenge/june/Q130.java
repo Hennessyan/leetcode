@@ -6,7 +6,7 @@ import java.util.Queue;
 // Surrounded Regions
 public class Q130 {
 
-    // BFS : O(mn) O(max(m,n))
+    // BFS : O(mn) O(min(m,n))
     private static final int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
     public void solve2(char[][] board) {
         if(board == null || board.length == 0) {

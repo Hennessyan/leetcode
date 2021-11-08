@@ -43,7 +43,7 @@ public class Q331 {
                 }
             }
         }
-        count = preorder.charAt(n - 1) == '#' ? count - 1 : count + 1;  // last one is not ',' !
-        return count == 0;                                              // no need count + 1 in L45 actually because last one must be '#' for valid tree.
+        count = preorder.charAt(n - 1) == '#' ? count - 1 : count + 1;  // count + 1 is needed for this case: "9,#,#,1"
+        return count == 0;
     }
 }

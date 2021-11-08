@@ -7,7 +7,7 @@ public class Q12 {
     private static String[] roman = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
     public String intToRoman(int num) {
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < nums.length; i++) {
+        for(int i = 0; i < nums.length & num > 0; i++) {
             while(num >= nums[i]) {
                 num -= nums[i];
                 sb.append(roman[i]);

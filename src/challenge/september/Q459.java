@@ -20,6 +20,10 @@ public class Q459 {
         return (s + s).substring(1, 2 * s.length() - 1).contains(s);
     }
 
+    public boolean repeatedSubstringPattern4(String s) {
+        return (s + s).indexOf(s, 1) != s.length();
+    }
+
     // O(n*sqrt(n)) O(sqrt(n))
     // Rabin-Karp : multiple pattern match
     public boolean repeatedSubstringPattern2(String s) {
@@ -55,7 +59,7 @@ public class Q459 {
     // https://leetcode.com/problems/repeated-substring-pattern/solution/
     // KMP : single pattern match
     // O(n) O(n)
-    public boolean repeatedSubstringPattern(String s) {
+    public boolean repeatedSubstringPattern(String s) { // "a" => return false !
         int n = s.length();
         int[] dp = new int[n];
         for(int i = 1; i < n; i++) {

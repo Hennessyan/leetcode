@@ -25,7 +25,8 @@ public class Q44 {
         }
         return dp[slen][plen];
     }
-
+    // O(SP) O(1)
+    // best - O(min(S,P)) ave - O(SlgP)
     public boolean isMatch1(String s, String p) {
         int sp = 0, pp = 0;
         int start = -1, match = 0;

@@ -15,15 +15,17 @@ public class Q733 {
         Queue<int[]> queue = new LinkedList<>();
         int color = image[sr][sc];
         queue.add(new int[]{sr, sc});
+        image[sr][sc] = newColor;
 
         while(!queue.isEmpty()) {
             int[] t = queue.poll();
-            image[t[0]][t[1]] = newColor;
+//            image[t[0]][t[1]] = newColor; // duplicates operation if use L22 rather than L18 + L28.
             for(int[] d : dirs) {
                 int x = d[0] + t[0];
                 int y = d[1] + t[1];
                 if(x >= 0 && x < m && y >= 0 && y < n && image[x][y] == color) {
                     queue.add(new int[]{x, y});
+                    image[x][y] = newColor;
                 }
             }
         }

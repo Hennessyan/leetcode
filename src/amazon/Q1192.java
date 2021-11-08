@@ -6,7 +6,7 @@ import java.util.*;
 
 // Critical Connections in a Network
 public class Q1192 {
-
+    // O(V+E) O(V+E) => O(E) O(E)
     Map<Integer, List<Integer>> graph;
     Map<Integer, Integer> rank;
     Set<Pair<Integer, Integer>> critical;
@@ -49,6 +49,7 @@ public class Q1192 {
 
                 int nextRank = dfs(v, curRank + 1);
                 // 0 -> 1 -> 2 -> 0
+                // <= curRank rather than minRank, otherwise will skip discard edges.
                 if(nextRank <= curRank) {           //  <=  we need to compare value here, so can't set rank value as -1 by default.
                     critical.remove(new Pair(Math.min(u, v), Math.max(u, v)));
                     minRank = Math.min(minRank, nextRank);
@@ -58,4 +59,7 @@ public class Q1192 {
         }
         return minRank;
     }
+    // = in L52 is used to remove 0-1 edge.
+    // 4
+    // [[0,1],[1,2],[2,0],[1,3]]
 }

@@ -7,10 +7,12 @@ import java.util.LinkedList;
 
 // Serialize and Deserialize BST
 public class Q449 {
-
     //https://leetcode.com/problems/serialize-and-deserialize-bst/solution/
     //O(n) O(n)
     public class Codec {
+//        byte t = (byte) (129);
+//        System.out.println((int) (t & 0xff)); // 129
+//        System.out.println((int) (t));        // -127
 
         // Encodes a tree to a single string.
         public String serialize(TreeNode root) {

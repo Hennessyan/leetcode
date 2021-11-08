@@ -7,84 +7,90 @@ public class Q787 {
     // SC not consider memo
 
 
-    // DFS : O(n^(K+1)) O(E + V + K + 1)
-    Map<Integer, List<int[]>> graph;
+    // DFS : O(E*K) O(E + n*K) ?
     Map<Integer, Integer> memo;
-    boolean[] visited;
-    int res;
-    int K;
-    public int findCheapestPrice1(int n, int[][] flights, int src, int dst, int K) {
-        graph = new HashMap<>();
-        memo = new HashMap<>();
-        this.K = K;
-        visited = new boolean[n];
-        res = Integer.MAX_VALUE;
-        for (int[] f : flights) {
-            graph.computeIfAbsent(f[0], x -> new ArrayList<>()).add(new int[]{f[1], f[2]});
+    List<int[]>[] graph;
+    boolean[] seen;
+    int ans = Integer.MAX_VALUE, K, dst;
+    public int findCheapestPrice2(int n, int[][] flights, int src, int dst, int K) {
+        graph = new ArrayList[n];
+        for(int i = 0; i < n; i++) {
+            graph[i] = new ArrayList<>();
         }
-        dfs(src, dst, 0, 0);
-        return res == Integer.MAX_VALUE ? -1 : res;
-    }
-
-    private void dfs(int src, int dst, int cost, int k) {
-        if (k > this.K + 1 || visited[src]) {
-            return;
-        }
-        if (src == dst) {
-            res = Math.min(res, cost);
-            return;
-        }
-        visited[src] = true;
-        if (graph.containsKey(src)) {
-            for (int[] vTmp : graph.get(src)) {
-                int v0 = vTmp[0], v1 = cost + vTmp[1];
-                if (v1 < res && memo.getOrDefault(vTmp[0] + (k + 1) * 1000, Integer.MAX_VALUE) > v1) {
-                    memo.put(vTmp[0] + (k + 1) * 1000, v1);
-                    dfs(v0, dst, v1, k + 1);
-                }
-            }
-        }
-        visited[src] = false;
-    }
-
-    //BFS O(n^(K+1)) O(n^(K+1))
-    public int findCheapestPrice0(int n, int[][] flights, int src, int dst, int K) {
-        Map<Integer, List<int[]>> graph = new HashMap<>();
-        Map<Integer, Integer> memo = new HashMap<>();
-        int res = Integer.MAX_VALUE;
         for(int[] f : flights) {
-            graph.computeIfAbsent(f[0], x -> new ArrayList<>()).add(new int[]{f[1], f[2]});
+            graph[f[0]].add(new int[]{f[1], f[2]}); // [neighbor, cost]
         }
-
-        Queue<int[]> queue = new LinkedList<>();
-        queue.add(new int[]{src, 0, 0});
-        while(!queue.isEmpty()) {
-            int size = queue.size();
-            for(int i = 0; i < size; i++) {
-                int[] u = queue.poll();
-                if(u[0] == dst) {
-                    res = Math.min(res, u[1]);
+        memo = new HashMap<>();
+        seen = new boolean[n];
+        this.K = K;
+        this.dst = dst;
+        dfs(src, 0, 0);
+        return ans == Integer.MAX_VALUE ? -1 : ans;
+    }
+    private void dfs(int u, int cost, int k) {
+        if(seen[u]) return;
+        seen[u] = true;
+        for(int[] nei : graph[u]) {
+            if(k == K && nei[0] != dst) continue;
+            int key = (k + 1) * 1000 + nei[0];
+            int nCost = cost + nei[1];
+            if(nCost < memo.getOrDefault(key, ans)) {
+                memo.put(key, nCost);
+                if(nei[0] == dst) {
+                    if(ans > nCost) {
+                        ans = nCost;
+                    }
                     continue;
                 }
-                if(graph.containsKey(u[0])) {
-                    for(int[] vTmp : graph.get(u[0])) {
-                        int v0 = vTmp[0], v1 = u[1] + vTmp[1];
-                        if(v1 < res && v1 < memo.getOrDefault((u[2] + 1) * 1000 + v0, Integer.MAX_VALUE)) {
-                            memo.put((u[2] + 1) * 1000 + v0, v1);
-                            queue.add(new int[]{v0, v1, u[2] + 1});
+                dfs(nei[0], nCost, k + 1);
+            }
+        }
+        seen[u] = false;
+    }
+
+    //BFS O(E*K) O(E + n*K)
+    public int findCheapestPrice0(int n, int[][] flights, int src, int dst, int K) {
+        List<int[]>[] graph = new ArrayList[n];
+        for(int i = 0; i < n; i++) {
+            graph[i] = new ArrayList<>();
+        }
+        for(int[] f : flights) {
+            graph[f[0]].add(new int[]{f[1], f[2]}); // [neighbor, cost]
+        }
+        Map<Integer, Integer> memo = new HashMap<>();
+        int INF = Integer.MAX_VALUE, ans = INF, k = 0;
+        Queue<int[]> queue = new LinkedList<>();
+        queue.add(new int[]{src, 0});
+
+        while(!queue.isEmpty() && k < K + 1) {
+            int size = queue.size();
+            for(int i = 0; i < size; i++) {
+                int[] cur = queue.poll();
+                int u = cur[0], cost = cur[1];
+
+                for(int[] nei : graph[u]) {
+                    if(k == K && nei[0] != dst) continue;
+                    if(cost + nei[1] < memo.getOrDefault((k + 1) * 1000 + nei[0], ans)) {
+                        memo.put((k + 1) * 1000 + nei[0], cost + nei[1]);
+                        if(nei[0] == dst) {
+                            if(cost + nei[1] < ans) {
+                                ans = cost + nei[1];
+                            }
+                            continue;
                         }
+                        queue.add(new int[]{nei[0], cost + nei[1]});
                     }
                 }
             }
-            if(K-- < 0) {
-                break;
-            }
+
+            k++;
         }
-        return res == Integer.MAX_VALUE ?  -1 : res;
+        return ans == INF ? -1 : ans;
     }
 
     // Dijkstra's Algorithm
-    // O(E*lgE) O(E)   E = V^2
+    // O(knlgkn) O(E + n*K) ?
+    // TC can be O(ElgE) actually.
     // TC of offer() / poll() is O(lgn) !!!
     public int findCheapestPrice(int n, int[][] flights, int src, int dst, int K) {
         Map<Integer, List<int[]>> graph = new HashMap<>();

@@ -53,7 +53,7 @@ public class Q1411 {
         }
         int sum = 0;
         for(int i = 0; i < 27; i++) {
-            if(selfOk(i)) {
+            if(selfOk(i)) {         // not necessary, only 12 valid position has non-zero value.
                 sum = (sum + dp[i]) % mode;
             }
         }

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.TreeSet;
 
 // Maximum Number of Events That Can Be Attended
+// Q1751(H)
 public class Q1353 {
     // 根据end date从小打到排序，因为我们肯定是deadline越近的先去做.
     // 并且我们肯定是越早做越好,才能避免后来一些未知的情况.
@@ -112,7 +113,7 @@ public class Q1353 {
             return null;
         SegmentTreeNode node = new SegmentTreeNode(start, end);
         node.val = start;
-        if (start != end) {
+        if (start != end) {         // don't forget this if condition !!!
             int mid = start + (end - start)/2;
             node.left = buildSegmentTree(start, mid);
             node.right = buildSegmentTree(mid+1, end);

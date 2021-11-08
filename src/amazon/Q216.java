@@ -24,6 +24,7 @@ public class Q216 {
             }
             return;
         }
+        if(n < 0) return;
         for(int i = val + 1; i <= 9; i++) {
             if(n >= i) {
                 list.add(i);
