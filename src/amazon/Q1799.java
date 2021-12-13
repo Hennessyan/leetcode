@@ -33,6 +33,8 @@ public class Q1799 {
     }
     // bottom-up
     // O(n^2 * 2^2n) O(2^2n)
+    // 1 << 2 - 1 => 2
+    // (1 << 2) - 1 => 3
     public int maxScore1(int[] nums) {
         int l = nums.length;
         int[] dp = new int[1 << l];

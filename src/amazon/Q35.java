@@ -16,4 +16,15 @@ public class Q35 {
         }
         return l;
     }
+
+    public int searchInsert1(int[] nums, int target) {
+        int l = 0, r = nums.length;
+        while(l < r) {
+            int m = l + (r - l) / 2;
+            if(nums[m] == target) return m;
+            else if(nums[m] > target) r = m;
+            else l = m + 1;
+        }
+        return l;
+    }
 }

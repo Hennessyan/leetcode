@@ -52,7 +52,7 @@ public class Q18 {
     }
     public List<List<Integer>> kSum(int[] nums, int target, int start, int k) {
         List<List<Integer>> res = new ArrayList<>();
-        if (start == nums.length || nums[start] * k > target || target > nums[nums.length - 1] * k)
+        if (start == nums.length || nums[start] * k > target || target > nums[nums.length - 1] * k) // division rather than multiplication to avoid overflow
             return res;
         if (k == 2)
             return twoSum(nums, target, start);

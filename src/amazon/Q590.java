@@ -50,7 +50,7 @@ public class Q590 {
         Node node = null;
         while(!stack.isEmpty()) {
             node = stack.pop();
-            list.add(node.val);
+            list.add(0, node.val);
             for(Node child : node.children) {
                 stack.push(child);
             }

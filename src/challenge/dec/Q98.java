@@ -62,7 +62,7 @@ public class Q98 {
 //		 return isValid(root.left, min, root.val) && isValid(root.right, root.val, max);
 //	}
 
-    /*method3 morris traversal*/
+    /*method3 morris traversal - break the tree*/
     public boolean isValidBST3(TreeNode root) {
         if(root == null){
             return true;

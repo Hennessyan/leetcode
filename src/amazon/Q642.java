@@ -1,10 +1,11 @@
 package amazon;
-// Design Search Autocomplete System
+// Design Search  Autocomplete System
 
 import java.util.*;
 
 public class Q642 {
-    // O(nl) O(nl) - update() takes constant time, n is length of sentence, l is length of sentence.
+    // We can optimize our storage by storing only references of the terminal nodes rather than storing the entire phrase
+    // O(nl) O(nl) - update() takes constant time, n is length of sentences, l is length of sentence.
     class AutocompleteSystem {
 
         TrieNode root;
@@ -127,7 +128,8 @@ public class Q642 {
             if(cur != null) {
                 cur = cur.children[c == ' ' ? 26 : c - 'a'];
             }
-            return cur == null ? new ArrayList<>() : cur.hots;
+            // don't return original hots directly => user can modify it !
+            return cur == null ? new ArrayList<>() : new ArrayList<>(cur.hots);
         }
 
         private void add(String s) {
@@ -141,6 +143,7 @@ public class Q642 {
 
                 update(tmp, s);
             }
+            tmp.isEnd = true;
         }
 
         private void update(TrieNode node, String s) {
@@ -150,7 +153,7 @@ public class Q642 {
             for(int i = 0; i < 3; i++) {
                 if(i == hots.size()) {
                     hots.add(s);
-                    break;  // can't use return, need to check size and remove last one if size == 4.
+                    return;  // can't exceed 3 in this case, return directly.
                 }
                 String pre = hots.get(i);
                 int pre_fre = fre.get(pre);
@@ -167,9 +170,11 @@ public class Q642 {
         class TrieNode {
             TrieNode[] children;
             List<String> hots;
+            boolean isEnd;
             public TrieNode() {
                 children = new TrieNode[27];
                 hots = new ArrayList<>();
+                isEnd = false;
             }
         }
     }

@@ -140,8 +140,9 @@ public class Q505 {
                     y += dir[1];
                     count++;
                 }
-                if (distance[s[0]][s[1]] + count < distance[x - dir[0]][y - dir[1]]) {  // should use s[2] + count
-                    distance[x - dir[0]][y - dir[1]] = distance[s[0]][s[1]] + count;    // should use s[2] + count
+                // below part is correct because of L132-L133, s[2] + count is not necessary for L144-145.
+                if (distance[s[0]][s[1]] + count < distance[x - dir[0]][y - dir[1]]) {  // no need to use s[2] + count
+                    distance[x - dir[0]][y - dir[1]] = distance[s[0]][s[1]] + count;    // no need to  use s[2] + count
                     queue.offer(new int[]{x - dir[0], y - dir[1], distance[x - dir[0]][y - dir[1]]});
                 }
             }

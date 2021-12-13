@@ -10,7 +10,7 @@ public class Q1041 {
             if(c == 'L') {
                 index = (index + 1) % 4;        // need to set correct dir orders based on the direction change
             } else if(c == 'R') {
-                index = (index + 3) % 4;
+                index = (index + 3) % 4;        // should not use index - 1 => overflow
             } else {
                 x += dirs[index][0];
                 y += dirs[index][1];

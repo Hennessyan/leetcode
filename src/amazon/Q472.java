@@ -77,7 +77,7 @@ public class Q472 {
                 //if prefix does not exist, no need to check further
                 if (cur.isWord && dp[j + 1] != -1) {
                     dp[i] = dp[j + 1] + 1;
-                    if (dp[i] >= 2) {
+                    if (dp[i] >= 2) {   // Can't use dp[i] > 2 here !
                         break;
                     }
                     //once found it can be composed by two words, break

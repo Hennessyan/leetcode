@@ -75,6 +75,6 @@ public class Q536 {
             }
             index++;
         }
-        return stack.isEmpty() ? root : stack.pop();
+        return root;
     }
 }
