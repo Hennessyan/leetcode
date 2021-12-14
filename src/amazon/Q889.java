@@ -55,4 +55,16 @@ public class Q889 {
     }
     // 2 1 3
     // 1 3 2
+
+    // recursion
+    int preIndex = 0, posIndex = 0;
+    public TreeNode constructFromPrePost2(int[]pre, int[]post) {
+        TreeNode root = new TreeNode(pre[preIndex++]);
+        if (root.val != post[posIndex])
+            root.left = constructFromPrePost2(pre, post);
+        if (root.val != post[posIndex])
+            root.right = constructFromPrePost2(pre, post);
+        posIndex++;
+        return root;
+    }
 }

@@ -53,4 +53,27 @@ public class Q430 {
 
         return preorder(tmp, tail);
     }
+
+    public Node flatten2(Node head) {
+        Node node = head;
+        postorder(node);
+        return head;
+    }
+    private Node postorder(Node node) {
+        if(node == null) return null;
+        Node l = postorder(node.child);
+        Node r = postorder(node.next);
+        if(l == null && r == null) {
+            return node;
+        }
+        if(l != null) {
+            Node next = node.next;
+            l.next = next;
+            if(next != null) next.prev = l;
+            node.next = node.child;
+            node.child.prev = node;
+            node.child = null;
+        }
+        return r != null ? r : l;
+    }
 }

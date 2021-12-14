@@ -46,6 +46,11 @@ public class Q898 {
     // dp[i] = {a[i], a[i] | a[i-1], a[i] | a[i-1] | a[i-2], ..., a[i] | a[i-1] | ... | a[0]}
     // length of dp[i] at most 32
     // TC & SC : O(n*lg(max(A)) < O(32n)
+    // cur is not same as ans, it contains value end with ith value in arr
+    // [8, 4, 2, 1]
+    // 8
+    // 8|4  4
+    // 8|4|2  4|2  2
     public int subarrayBitwiseORs(int[] arr) {
         Set<Integer> ans = new HashSet<>();
         Set<Integer> cur = new HashSet<>();

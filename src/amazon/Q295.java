@@ -57,4 +57,6 @@ public class Q295 {
             return maxHeap.size() > minHeap.size() ? (double) maxHeap.peek() : (minHeap.peek() + maxHeap.peek()) * 0.5;
         }
     }
+    // follow-ups
+    // https://leetcode.com/problems/find-median-from-data-stream/discuss/275207/Solutions-to-follow-ups
 }

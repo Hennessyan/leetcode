@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 // Partition to K Equal Sum Subsets
+// Q1723
 public class Q698 {
     // TLE : O(n*n!) O(n)
     public boolean canPartitionKSubsets(int[] nums, int k) {

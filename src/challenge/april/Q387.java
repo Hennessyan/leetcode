@@ -39,4 +39,30 @@ public class Q387 {
         }
         return list.size() == 0 ? -1 : list.get(0);
     }
+    // check this one-pass method : sliding window
+    public int firstUniqChar2(String s) {
+        int[] count = new int[26];
+        int ans = -1, n = s.length(), j = 0, cur = -1;
+        for(int i = 0; i < n; i++) {
+            int index = s.charAt(i) - 'a';
+            if(count[index]++ == 0) {
+                if(ans == -1) {
+                    ans = i;
+                    cur = index;
+                }
+            } else if(cur == index) {
+                ans = -1;
+                cur = -1;
+                while(j <= i) {
+                    int head = s.charAt(j++) - 'a';
+                    if(count[head] == 1) {
+                        ans = j - 1;
+                        cur = head;
+                        break;
+                    }
+                }
+            }
+        }
+        return ans;
+    }
 }

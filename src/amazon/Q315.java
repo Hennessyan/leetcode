@@ -102,4 +102,96 @@ public class Q315 {
             return x & (-x);
         }
     }
+
+    public List<Integer> countSmaller(int[] nums) {
+        int min = Integer.MAX_VALUE, max = Integer.MIN_VALUE;
+        for(int num : nums) {
+            min = Math.min(min, num);
+            max = Math.max(max, num);
+        }
+        SegmentTree st = new SegmentTree(2 * (max - min + 1));
+        List<Integer> res = new ArrayList<>();
+        int n = nums.length;
+        for(int i = n - 1; i >= 0; i--) {
+            res.add(st.query(0, nums[i] - min - 1));
+            st.update(nums[i] - min, 1);
+        }
+        Collections.reverse(res);
+        return res;
+    }
+    class SegmentTree {
+        int n;
+        int[] arr;
+        public SegmentTree(int n) {
+            this.n = n;
+            this.arr = new int[2 * n];
+        }
+        public int query(int l, int r) {
+            int sum = 0;
+            l += n;
+            r += n;
+            while(l <= r) {
+                if(l % 2 == 1) {
+                    sum += arr[l++];
+                }
+                if(r % 2 == 0) {
+                    sum += arr[r--];
+                }
+                l /= 2;
+                r /= 2;
+            }
+            return sum;
+        }
+        public void update(int i, int diff) {
+            i += n;
+            while(i >= 1) {
+                arr[i] += diff;
+                i /= 2;
+            }
+        }
+    }
+    // merge sort
+    public List<Integer> countSmaller3(int[] nums) {
+        int n = nums.length;
+        int[] index = new int[n];
+        int[] result = new int[n];
+        for(int i = 0; i < n; i++) {
+            index[i] = i;
+        }
+        sort(nums, index, result, 0, n - 1);
+        List<Integer> res = new ArrayList<>();
+        for(int val : result) {
+            res.add(val);
+        }
+        return res;
+    }
+    private void sort(int[] nums, int[] index, int[] result, int l, int r) {
+        if(l >= r) return;
+        int m = l + (r - l) / 2;
+        sort(nums, index, result, l, m);
+        sort(nums, index, result, m + 1, r);
+        merge(nums, index, result, l, m, r);
+    }
+    private void merge(int[] nums, int[] index, int[] result, int l, int m, int r) {
+        List<Integer> tmp = new ArrayList<>();
+        int i = l, j = m + 1;
+        while(i <= m && j <= r) {
+            if(nums[index[i]] <= nums[index[j]]) {
+                result[index[i]] += j - (m + 1);
+                tmp.add(index[i++]);
+            } else {
+                tmp.add(index[j++]);
+            }
+        }
+        while(i <= m) {
+            result[index[i]] += j - (m + 1);
+            tmp.add(index[i++]);
+        }
+        while(j <= r) {
+            tmp.add(index[j++]);
+        }
+        for(int val : tmp) {
+            index[l++] = val;
+        }
+    }
 }

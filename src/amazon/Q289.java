@@ -2,6 +2,9 @@ package amazon;
 // Game of Life
 public class Q289 {
     // O(mn) O(1)
+    // follow-up:
+    // if only small # of live cells in board => record them, and check neighbors, then update the board based on previous result
+    // if board is too big to save in memory => three rows per time !!!
     int m, n;
     public void gameOfLife(int[][] board) {
         m = board.length;

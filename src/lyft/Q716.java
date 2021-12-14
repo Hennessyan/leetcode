@@ -79,7 +79,7 @@ class MaxStack {
         Node node = dll.head.next;
         dll.delete(node);
         List<Node> list = tMap.get(node.val);
-        list.remove(node);
+        list.remove(list.size() - 1);   // always remove the last one hence O(lgn), list.remove(node) -> O(n)
         if(list.isEmpty()) {
             tMap.remove(node.val);
         }
