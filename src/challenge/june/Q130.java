@@ -35,6 +35,7 @@ public class Q130 {
             int tmp = queue.poll();
             int x = tmp / n;
             int y = tmp % n;
+            if(board[x][y] != 'O') continue;
             board[x][y] = 'I';
             for(int[] d : dirs) {
                 int x1 = d[0] + x;

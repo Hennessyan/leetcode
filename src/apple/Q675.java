@@ -110,4 +110,54 @@ public class Q675 {
         }
         return -1;
     }
+
+    int m, n;
+    public int cutOffTree2(List<List<Integer>> forest) {
+        List<int[]> trees = new ArrayList<>();
+        int sr = 0, sc = 0;
+        m = forest.size();
+        n = forest.get(0).size();
+        for(int i = 0; i < m; i++) {
+            List<Integer> tmp = forest.get(i);
+            for(int j = 0; j < n; j++) {
+                if(tmp.get(j) > 1) {
+                    trees.add(new int[]{tmp.get(j), i, j});
+                }
+            }
+        }
+        Collections.sort(trees, (t1, t2) -> t1[0] - t2[0]);
+        int ans = 0;
+        for(int[] tree : trees) {
+            int d = help(forest, sr, sc, tree[1], tree[2]);
+            if(d < 0) return -1;
+            ans += d;
+            sr = tree[1];
+            sc = tree[2];
+        }
+        return ans;
+    }
+    // a* algorithm : f[x] = cost[i] + g[i]
+    private int help(List<List<Integer>> forest, int sr, int sc, int er, int ec) {
+        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[0] - b[0]);
+        pq.offer(new int[]{0, 0, sr, sc});  // [forecast, cost, r, c]
+        Map<Integer, Integer> costMap = new HashMap<>();
+        costMap.put(sr * n + sc, 0);
+        while(!pq.isEmpty()) {
+            int[] cur = pq.poll();
+            if(cur[2] == er && cur[3] == ec) return cur[1];
+            for(int[] d : dirs) {
+                int x = cur[2] + d[0];
+                int y = cur[3] + d[1];
+                if(x >= 0 && x < m && y >= 0 && y < n && forest.get(x).get(y) > 0) {
+                    int ncost = cur[1] + 1;
+                    int key = x * n + y;
+                    if(ncost < costMap.getOrDefault(key, 6666)) {
+                        costMap.put(key, ncost);
+                        pq.offer(new int[]{ncost + Math.abs(er - x) + Math.abs(ec - y), ncost, x, y});
+                    }
+                }
+            }
+        }
+        return -1;
+    }
 }

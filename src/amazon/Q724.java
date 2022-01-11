@@ -1,7 +1,7 @@
 package amazon;
 // Find Pivot Index
 public class Q724 {
-    // O(n0 O(1)
+    // O(n) O(1)
     public int pivotIndex(int[] nums) {
         int sum = 0, total = 0;
         for(int num : nums) {

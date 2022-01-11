@@ -39,30 +39,33 @@ public class Q387 {
         }
         return list.size() == 0 ? -1 : list.get(0);
     }
-    // check this one-pass method : sliding window
+// no need to use sliding window, and should be very careful of corner case if use it.
     public int firstUniqChar2(String s) {
+        if(s == null || s.length() == 0) return -1;
         int[] count = new int[26];
-        int ans = -1, n = s.length(), j = 0, cur = -1;
-        for(int i = 0; i < n; i++) {
-            int index = s.charAt(i) - 'a';
-            if(count[index]++ == 0) {
-                if(ans == -1) {
-                    ans = i;
-                    cur = index;
-                }
-            } else if(cur == index) {
-                ans = -1;
-                cur = -1;
-                while(j <= i) {
-                    int head = s.charAt(j++) - 'a';
-                    if(count[head] == 1) {
-                        ans = j - 1;
-                        cur = head;
+        int index = -1, l = 0, r = 0, n = s.length();
+        char unique = '*';
+        while(r < n) {
+            char c = s.charAt(r);
+            if(count[c - 'a']++ == 0 && index == -1) {
+                unique = c;
+                index = r;
+            }
+
+            if(c == unique && count[c - 'a'] > 1) {
+                unique = '*';
+                index = -1;
+                while(l <= r) {
+                    char hc = s.charAt(l++);
+                    if(count[hc - 'a'] == 1) {
+                        unique = hc;
+                        index = l - 1;
                         break;
                     }
                 }
             }
+            r++;
         }
-        return ans;
+        return index;
     }
 }
