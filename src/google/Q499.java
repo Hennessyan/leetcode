@@ -58,12 +58,13 @@ public class Q499 {
     public String findShortestWay2(int[][] maze, int[] ball, int[] hole) {
         int m = maze.length;
         int n = maze[0].length;
+        // can't use int[][] dist => duplicates here
         boolean[][] seen = new boolean[m][n];
         PriorityQueue<Point> pq = new PriorityQueue<>();
         pq.add(new Point(ball[0], ball[1], 0, ""));
         int[][] dirs = {{1, 0}, {0, -1}, {0, 1}, {-1, 0}};
         char[] chs = {'d', 'l', 'r', 'u'};
-
+        // both "lul" and "ul" are added into pq, and small path return first.
         while (!pq.isEmpty()) {
             Point e = pq.poll();
             if (e.row == hole[0] && e.col == hole[1]) {

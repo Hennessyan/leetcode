@@ -5,7 +5,7 @@ import java.util.Queue;
 
 // Shortest Distance from All Buildings
 public class Q317 {
-    // BFS : O((mn)^2) O(mn)
+    // BFS : O((mn)^2) O(mn) - worst case : half 0 and half 1
     int[][] dirs = {{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
     int[][] grid, dist;
     int m, n;

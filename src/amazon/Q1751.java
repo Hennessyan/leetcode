@@ -23,7 +23,7 @@ public class Q1751 {
         int n = events.length;
         Arrays.sort(events, (e1, e2) -> e1[1] - e2[1]);
         int[][] dp = new int[n + 1][k + 1];
-        for(int i = 1; i <= n; i++) {
+        for(int i = 1; i <= n; i++) {   // change order of L26 & L28 is fine, but this way can avoid multiple call of binarysearch.
             int pre = binarysearch0(events, i);
             for(int j = 1; j <= k; j++) {
                 dp[i][j] = Math.max(dp[pre][j-1] + events[i - 1][2], dp[i-1][j]);
