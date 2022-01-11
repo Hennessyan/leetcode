@@ -8,6 +8,7 @@ import java.util.List;
 // Design In-Memory File System
 public class Q588 {
 
+    // it's expandable to include more commands like rmdir, rename file / sub-dir, relocate file / sub-dir
     public class FileSystem {
         class Dir {
             HashMap< String, Dir > dirs = new HashMap < > ();
@@ -17,6 +18,7 @@ public class Q588 {
         public FileSystem() {
             root = new Dir();
         }
+        // O(m+n+klgk) - m for length of path, n for depth of directory, k for # of files and sub-dirs.
         public List < String > ls(String path) {
             Dir t = root;
             List < String > files = new ArrayList< >();
@@ -37,7 +39,7 @@ public class Q588 {
             Collections.sort(files);
             return files;
         }
-
+        // O(m+n)
         public void mkdir(String path) {
             Dir t = root;
             String[] d = path.split("/");
@@ -47,7 +49,7 @@ public class Q588 {
                 t = t.dirs.get(d[i]);
             }
         }
-
+        // O(m+n)
         public void addContentToFile(String filePath, String content) {
             Dir t = root;
             String[] d = filePath.split("/");
@@ -67,6 +69,7 @@ public class Q588 {
         }
     }
     /*
+    // list only directories or files need to traverse whole structure.
     class FileSystem {
 
         class File {

@@ -55,6 +55,7 @@ public class Q499 {
     }
 
     // O(mnlgmn) O(mn)
+    // don't use int[][] dist, can't get correct solution without boolean[][] seen.
     public String findShortestWay2(int[][] maze, int[] ball, int[] hole) {
         int m = maze.length;
         int n = maze[0].length;

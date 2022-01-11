@@ -33,4 +33,17 @@ public class Q274 {
         }
         return k;
     }
+
+    public int hIndex2(int[] cs) {
+        int n = cs.length;
+        int[] d = new int[n + 1];
+        for(int c : cs) {
+            d[Math.min(c, n)]++;
+        }
+        int h = n, total = d[n];
+        while(total < h) {
+            total += d[--h];
+        }
+        return h;
+    }
 }

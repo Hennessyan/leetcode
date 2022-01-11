@@ -13,7 +13,7 @@ public class Q126 {
     // O(nl + k * length of result)  k = number of result
     public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
         List<List<String>> res = new ArrayList<>();
-        Set<String> s0 = new HashSet<>(wordList);
+        Set<String> s0 = new HashSet<>(wordList);       // O(nl)
         if(!s0.contains(endWord)) {
             return res;
         }
@@ -21,7 +21,7 @@ public class Q126 {
         Set<String> s2 = new HashSet<>();
         s1.add(beginWord);
         s2.add(endWord);
-        Map<String, List<String>> children = new HashMap<>();
+        Map<String, List<String>> children = new HashMap<>();   // O(nl) - at most n - 1 edges
         boolean found = false, backward = false;
 
         while(!s1.isEmpty() && !s2.isEmpty() && !found) {

@@ -1,9 +1,6 @@
 package amazon;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 
 // Meeting Scheduler
 public class Q1229 {
@@ -51,5 +48,28 @@ public class Q1229 {
             }
         }
         return new ArrayList<Integer>();
+    }
+    // sort better than heap.
+    public List<Integer> minAvailableDuration2(int[][] slots1, int[][] slots2, int duration) {
+        LinkedList<int[]> list = new LinkedList<>();
+        for(int[] s1 : slots1) {
+            if(s1[1] - s1[0] >= duration) {
+                list.add(s1);
+            }
+        }
+        for(int[] s2 : slots2) {
+            if(s2[1] - s2[0] >= duration) {
+                list.add(s2);
+            }
+        }
+        Collections.sort(list, (a, b) -> a[0] - b[0]);
+        while(list.size() >= 2) {
+            int[] s = list.removeFirst();
+            int[] e = list.peekFirst();
+            if(s[1] - e[0] >= duration) {
+                return Arrays.asList(e[0], e[0] + duration);
+            }
+        }
+        return new ArrayList<>();
     }
 }

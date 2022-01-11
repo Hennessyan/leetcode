@@ -3,6 +3,7 @@ package amazon;
 public class Q41 {
 
     /*method1       Put each number in its right place.*/
+    // O(n) O(1) ?
     public int firstMissingPositive(int[] nums) {
         int i = 0;
         while(i < nums.length){

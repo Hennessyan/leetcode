@@ -32,12 +32,12 @@ public class Q669 {
         root.right = trimBST1(root.right, low, high);
         return root;
     }
-
+    // very slow
     public TreeNode trimBST2(TreeNode root, int low, int high) {
         if(root == null) {
             return null;
         }
-        while(root.val < low || root.val > high) {
+        while(root != null && (root.val < low || root.val > high)) {
             if(root.val < low) {
                 root = root.right;
             }
@@ -45,25 +45,28 @@ public class Q669 {
                 root = root.left;
             }
         }
-        Deque<TreeNode> stack = new ArrayDeque<>();
-        stack.push(root);
-        while(!stack.isEmpty()) {
-            TreeNode node = stack.poll();
-            boolean flag = false;
+        if(root != null) {
+            Deque<TreeNode> stack = new ArrayDeque<>();
+            stack.push(root);
+            while (!stack.isEmpty()) {
+                TreeNode node = stack.poll();
+                boolean flag = false;
 
-            if(node.left != null && node.left.val < low) {
-                node.left = node.left.right;
-                flag = true;
-            }
-            if(node.right != null && node.right.val > high) {
-                node.right = node.right.left;
-                flag = true;
-            }
-            if(flag) {
-                stack.push(node);
-            } else {
-                if(node.left != null) stack.push(node.left);
-                if(node.right != null) stack.push(node.right);
+                if (node.left != null && node.left.val < low) {
+                    node.left = node.left.right;
+                    flag = true;
+                }
+                if (node.right != null && node.right.val > high) {
+                    node.right = node.right.left;
+                    flag = true;
+                }
+                // calculate child node later
+                if (flag) {
+                    stack.push(node);
+                } else {
+                    if (node.left != null) stack.push(node.left);
+                    if (node.right != null) stack.push(node.right);
+                }
             }
         }
         return root;

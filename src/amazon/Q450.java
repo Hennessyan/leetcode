@@ -23,4 +23,36 @@ public class Q450 {
         }
         return root;
     }
+    // iteration
+    public TreeNode deleteNode1(TreeNode root, int key) {
+        TreeNode node = root, pre = null;
+        while(node != null && node.val != key) {
+            pre = node;
+            if(node.val < key) {
+                node = node.right;
+            } else {
+                node = node.left;
+            }
+        }
+        if(pre == null) {
+            return delete(node);
+        }
+        if(pre.left == node) {
+            pre.left = delete(node);
+        } else {
+            pre.right = delete(node);
+        }
+        return root;
+    }
+    private TreeNode delete(TreeNode node) {
+        if(node == null) return null;
+        if(node.left == null) return node.right;
+        if(node.right == null) return node.left;
+        TreeNode tmp = node.right;
+        while(tmp.left != null) {
+            tmp = tmp.left;
+        }
+        tmp.left = node.left;
+        return node.right;
+    }
 }

@@ -39,7 +39,7 @@ public class Q387 {
         }
         return list.size() == 0 ? -1 : list.get(0);
     }
-    // no need to use sliding window, and should be very careful of corner case if use it.
+// no need to use sliding window, and should be very careful of corner case if use it.
     public int firstUniqChar2(String s) {
         if(s == null || s.length() == 0) return -1;
         int[] count = new int[26];
