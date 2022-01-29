@@ -9,6 +9,7 @@ public class Q69 {
     // n is non-negative
 
     // method1 : O(sqrt(x)) O(1)
+    // wrong if x = 2, need to use i = 1 / return 1
     public int mySqrt1(int x) {
         if(x < 2) {
             return x;

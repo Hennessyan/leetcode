@@ -7,12 +7,13 @@ public class Q341 {
     public class NestedIterator implements Iterator<Integer> {
         Stack<Iterator<NestedInteger>> stack;
         int cur;
+        // O(1)
         public NestedIterator(List<NestedInteger> nestedList) {
             stack = new Stack<>();
             stack.push(nestedList.iterator());
             cur = 0;
         }
-
+        // O(1)
         @Override
         public Integer next() {
             return cur;
@@ -41,19 +42,19 @@ public class Q341 {
 
     /*
     import java.util.NoSuchElementException;
-
+    // SC : O(N+L)
     public class NestedIterator implements Iterator<Integer> {
 
         // In Java, the Stack class is considered deprecated. Best practice is to use
         // a Deque instead. We'll use addFirst() for push, and removeFirst() for pop.
         private Deque<NestedInteger> stack;
-
+        // O(N+L)
         public NestedIterator(List<NestedInteger> nestedList) { // O(N) - constructor adds elements one by one
             // The constructor puts them on in the order we require. No need to reverse.
             stack = new ArrayDeque(nestedList);
         }
 
-
+        // O(L/N)
         @Override
         public Integer next() {
             // As per java specs, throw an exception if there's no elements left.
@@ -63,7 +64,7 @@ public class Q341 {
             return stack.removeFirst().getInteger();
         }
 
-
+        // O(L/N)
         @Override
         public boolean hasNext() {
             // Check if there are integers left by getting one onto the top of stack.

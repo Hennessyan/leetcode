@@ -8,7 +8,7 @@ public class Q126 {
 
 
     // bidirectional:
-    // O(n*26^(l/2))    vs O(nk^2 + x) O(nk)
+    // O(n*26^(l/2))    vs O(nk^2 + x) O(nk) (second one should be correct answer)
     // O(n + k * length of result)  k = number of result
     public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
         List<List<String>> res = new ArrayList<>();
@@ -33,9 +33,10 @@ public class Q126 {
             for(String str : s1) {
                 s0.remove(str);
             }
-            for(String str : s2) {
-                s0.remove(str);
-            }
+            // should remove L37-39
+//            for(String str : s2) {
+//                s0.remove(str);
+//            }
             Set<String> s3 = new HashSet<>();
             for(String word : s1) {
                 char[] chs = word.toCharArray();

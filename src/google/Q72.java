@@ -64,4 +64,26 @@ public class Q72 {
         }
         return dp[flag ^ 1][n];
     }
+    // O(mn) O(n)
+    public int minDistance2(String w1, String w2) {
+        int m = w1.length(), n = w2.length();
+        if(m * n == 0) return m + n;
+        int[] dp = new int[n + 1];
+        for(int i = 1; i <= n; i++) {
+            dp[i] = i;
+        }
+        for(int i = 1; i <= m; i++) {
+            int pre = i - 1;
+            dp[0] = i;
+            for(int j = 1; j <= n; j++) {
+                int tmp = dp[j];
+                if(w1.charAt(i - 1) == w2.charAt(j - 1)) {
+                    pre -= 1;
+                }
+                dp[j] = Math.min(pre, Math.min(dp[j-1], dp[j])) + 1;
+                pre = tmp;
+            }
+        }
+        return dp[n];
+    }
 }

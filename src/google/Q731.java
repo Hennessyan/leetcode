@@ -56,7 +56,7 @@ public class Q731 {
                         delta.remove(start);
                     return false;
                 }
-                if(entry.getKey() > end) break; // pruning
+                if(entry.getKey() >= end) break; // pruning
             }
             return true;
         }

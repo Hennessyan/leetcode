@@ -2,6 +2,9 @@ package amazon;
 
 import common.TreeNode;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 // Closest Binary Search Tree Value
 public class Q270 {
     // O(H) O(1)
@@ -39,5 +42,23 @@ public class Q270 {
             root = val < target ? root.right : root.left;
         }
         return closet;
+    }
+
+    public int closestValue2(TreeNode root, double target) {
+        double diff = Integer.MAX_VALUE;
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        TreeNode node = root;
+        while(node != null || !stack.isEmpty()) {
+            while(node != null) {
+                stack.push(node);
+                node = node.left;
+            }
+            node = stack.pop();
+            if(Math.abs(node.val - target) < Math.abs(diff)) {
+                diff = node.val - target;
+            } else break;
+            node = node.right;
+        }
+        return (int) (target + diff);
     }
 }

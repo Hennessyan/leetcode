@@ -70,7 +70,7 @@ public class Q65 {
                 }
                 seenDot = true;
             } else {
-                return false;
+                return false;   // "abc"
             }
         }
 

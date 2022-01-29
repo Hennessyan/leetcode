@@ -39,7 +39,8 @@ public class Q698 {
         return false;
     }
 
-    // O(n*2^n) O(2^n)
+    // O(n*2^n) - length of key is n => 2^n * n
+    // O(2^n)
     public boolean canPartitionKSubsets1(int[] nums, int k) {
         if(nums == null || nums.length < k) return false;
         int sum = 0, target = 0;

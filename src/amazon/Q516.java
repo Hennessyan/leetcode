@@ -18,6 +18,25 @@ public class Q516 {
         return dp[0][len-1];
     }
 
+    public int longestPalindromeSubseq2(String s) {
+        int n = s.length();
+        int[][] dp = new int[n][n];
+        for(int l = 1; l <= n; l++) {
+            for(int i = 0; i < n - l + 1; i++) {
+                if(l == 1) dp[i][i] = 1;
+                else {
+                    int j = i + l - 1;
+                    if(s.charAt(i) == s.charAt(j)) {
+                        dp[i][j] = dp[i+1][j-1] + 2;
+                    } else {
+                        dp[i][j] = Math.max(dp[i+1][j], dp[i][j-1]);
+                    }
+                }
+            }
+        }
+        return dp[0][n-1];
+    }
+
     /*method2*/
     public int longestPalindromeSubseq1(String s) {
         int[][] res = new int[s.length()][s.length()];

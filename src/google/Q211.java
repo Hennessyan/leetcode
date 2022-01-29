@@ -6,8 +6,8 @@ import java.util.Map;
 // Design Add and Search Words Data Structure
 public class Q211 {
     // addWord - O(m) O(m) m -> length of word
-    // search - O(n*26^m) O(m) m -> number of dots
-    // O(n) O(1) if no dot
+    // search - O(n*26^m) O(m) m -> number of dots n - number of inserted words
+    // O(m) O(1) if no dot
     class WordDictionary {
 
         TrieNode root;
@@ -141,3 +141,67 @@ public class Q211 {
         }
     }
 }
+ /*
+    class WordDictionary {
+    TrieNode root;
+    public WordDictionary() {
+        root = new TrieNode();
+    }
+
+    public void addWord(String word) {
+        TrieNode node = root;
+        for(char c : word.toCharArray()) {
+            if(!node.containsKey(c)) {
+                node.put(c, new TrieNode());
+            }
+            node = node.get(c);
+        }
+        node.isEnd = true;
+        node.word = word;
+    }
+
+    public boolean search(String word) {
+        List<String> list = new ArrayList<>();
+        boolean ans = dfs(word, 0, root, list);
+        return ans;
+    }
+    private boolean dfs(String word, int i, TrieNode node, List<String> list) {
+        if(node == null) return false;
+        if(i == word.length() && node.isEnd) {
+            list.add(node.word);
+            return true;
+        }
+
+        char cur = word.charAt(i);
+        if(cur == '.') {
+            boolean ans = false;
+            for(char j = 'a'; j <= 'z'; j++) {
+                ans |= dfs(word, i + 1, node.get(j), list);
+            }
+            return ans;
+        } else {
+            return dfs(word, i + 1, node.get(cur), list);
+        }
+    }
+}
+class TrieNode {
+    TrieNode[] list;
+    boolean isEnd;
+    String word;
+    public TrieNode() {
+        list = new TrieNode[26];
+        isEnd = false;
+        word = null;
+    }
+    public void put(char c, TrieNode node) {
+        list[c - 'a'] = node;
+    }
+    public boolean containsKey(char c) {
+        return list[c - 'a'] != null;
+    }
+    public TrieNode get(char c) {
+        return list[c - 'a'];
+    }
+}
+
+*/

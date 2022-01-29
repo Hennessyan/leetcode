@@ -63,7 +63,7 @@ public class Q1345 {
 
         return -1;
     }
-    // bidirectional bfs - O(n) O(n)
+    // bidirectional bfs - O(n) O(n) - each node visited once
     public int minJumps1(int[] arr) {
         if(arr == null || arr.length < 2) {
             return 0;

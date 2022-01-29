@@ -31,4 +31,22 @@ public class Q272 {
             inorder(node.right, deque);
         }
     }
+    // follow-up : may less than O(n)
+    public List<Integer> closestKValues1(TreeNode root, double target, int k) {
+        LinkedList<Integer> list = new LinkedList<>();
+        inorder(root, list, target, k);
+
+        return list;
+    }
+    private void inorder(TreeNode node, LinkedList<Integer> list, double target, int k) {
+        if(node == null) return;
+        inorder(node.left, list, target, k);
+        if(list.size() == k) {
+            if(Math.abs(target - list.getFirst()) > Math.abs(target - node.val)) {
+                list.removeFirst();
+            } else return;
+        }
+        list.add(node.val);
+        inorder(node.right, list, target, k);
+    }
 }

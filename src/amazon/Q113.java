@@ -23,8 +23,10 @@ public class Q113 {
             return;
         }
         list.add(root.val);
-        if(sum - root.val == 0 && root.left == null && root.right == null) {
-            res.add(new ArrayList<>(list));
+        // condition order is important to improve the performance.
+        if(root.left == null && root.right == null) {
+            if(sum - root.val == 0)
+                res.add(new ArrayList<>(list));
         }else {
             backtrack(root.left, list, res, sum - root.val);
             backtrack(root.right, list, res, sum - root.val);

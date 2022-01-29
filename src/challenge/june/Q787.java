@@ -7,7 +7,8 @@ public class Q787 {
     // SC not consider memo
 
 
-    // DFS : O(E*K) O(E + n*K) ?
+    // DFS : O(E*K) O(E + n*K)
+    // TC => V*K (recursion) * V (cost in each recursion)
     Map<Integer, Integer> memo;
     List<int[]>[] graph;
     boolean[] seen;

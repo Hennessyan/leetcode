@@ -7,7 +7,7 @@ public class Q31 {
 
     public static void main(String[] args) {
         Q31 q = new Q31();
-        int[] nums = {1,2,3};
+        int[] nums = {-1, -2, -3};
         q.nextPermutation(nums);
         System.out.println(Arrays.toString(nums));
     }
