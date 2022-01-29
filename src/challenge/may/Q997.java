@@ -32,6 +32,8 @@ public class Q997 {
     }
     // method2
     public int findJudge(int N, int[][] trust) {
+        if(trust.length < N - 1) return -1;
+
         int[] count = new int[N + 1];
         for(int[] t : trust) {
             count[t[0]]--;

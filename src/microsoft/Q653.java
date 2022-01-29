@@ -2,10 +2,7 @@ package microsoft;
 
 import common.TreeNode;
 
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Set;
+import java.util.*;
 
 // Two Sum IV - Input is a BST
 public class Q653 {
@@ -37,5 +34,28 @@ public class Q653 {
         }
         set.add(root.val);
         return help(root.left, set, k) || help(root.right, set, k);
+    }
+
+    public boolean findTarget2(TreeNode root, int k) {
+        List< Integer > list = new ArrayList();
+        inorder(root, list);
+        int l = 0, r = list.size() - 1;
+        while (l < r) {
+            int sum = list.get(l) + list.get(r);
+            if (sum == k)
+                return true;
+            if (sum < k)
+                l++;
+            else
+                r--;
+        }
+        return false;
+    }
+    public void inorder(TreeNode root, List < Integer > list) {
+        if (root == null)
+            return;
+        inorder(root.left, list);
+        list.add(root.val);
+        inorder(root.right, list);
     }
 }

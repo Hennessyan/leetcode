@@ -27,8 +27,21 @@ public class Q205 {
         }
         return true;
     }
-
     public boolean isIsomorphic1(String s, String t) {
+        Map<Character, Character> sm = new HashMap<>();
+        Map<Character, Character> tm = new HashMap<>();
+        for(int i = 0; i < s.length(); i++) {
+            char c1 = s.charAt(i), c2 = t.charAt(i);
+            if(!sm.containsKey(c1)) {
+                if(tm.containsKey(c2)) return false;
+                sm.put(c1, c2);
+                tm.put(c2, c1);
+            } else if(sm.get(c1) != c2) return false;
+        }
+        return true;
+    }
+
+    public boolean isIsomorphic2(String s, String t) {
         Map<Character, Character> smap = new HashMap<>();
         Map<Character, Character> tmap = new HashMap<>();
         for(int i = 0; i < s.length(); i++) {
@@ -43,7 +56,7 @@ public class Q205 {
         return true;
     }
     // method3 : O(n) O(n)
-    public boolean isIsomorphic2(String s, String t) {
+    public boolean isIsomorphic3(String s, String t) {
         return transform(s).equals(transform(t));
     }
     private String transform(String s) {

@@ -88,7 +88,7 @@ public class Q128 {
         int currentStreak = 1;
 
         for (int i = 1; i < nums.length; i++) {
-            if (nums[i] != nums[i-1]) {
+            if (nums[i] != nums[i-1]) {     // necessary for the duplicates !!!
                 if (nums[i] == nums[i-1]+1) {
                     currentStreak += 1;
                 }
